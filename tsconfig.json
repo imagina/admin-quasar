@@ -1,7 +1,22 @@
 {
   "extends": "@quasar/app-webpack/tsconfig-preset",
+  "exclude": ["src/modules", "src/boot", "src/config"],
   "compilerOptions": {
-    "baseUrl": "."
+    "strict": false,
+    "baseUrl": ".",
+    "target": "es5",
+    "sourceMap": true,
+    "noImplicitAny": false,
+    "skipLibCheck": true,
+    "resolveJsonModule": true,
+    "esModuleInterop": true,
+    "allowJs": true,
+    "types": ["node"],
+    "lib": ["es2019", "dom", "esnext"],
   },
-  "exclude": ["src/modules"]
+  "include": [
+    "src//*.ts",
+    "src//.tsx",
+    "src/**/.vue"
+  ]
 }

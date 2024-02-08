@@ -1,5 +1,13 @@
 import { boot } from 'quasar/wrappers';
 import { createI18n } from 'vue-i18n';
+import cache from 'src/modules/qsite/_plugins/cache';
+import helper from 'src/modules/qsite/_plugins/helper';
+
+// i18n data
+import customFormats from 'src/modules/qsite/_i18n/master/formats/customFormats';
+import numberFormats from 'src/modules/qsite/_i18n/master/formats/currencyFormats';
+import dateTimeFormats from 'src/modules/qsite/_i18n/master/formats/dateTimeFormats';
+import messagesLocal from 'src/modules/qsite/_i18n/JsonLocal/i18n.json';
 
 import messages from 'src/i18n';
 
@@ -9,25 +17,90 @@ export type MessageSchema = typeof messages['en-US'];
 
 // See https://vue-i18n.intlify.dev/guide/advanced/typescript.html#global-resource-schema-type-definition
 /* eslint-disable @typescript-eslint/no-empty-interface */
-declare module 'vue-i18n' {
+declare module 'vue-i18n'
+{
   // define the locale messages schema
-  export interface DefineLocaleMessage extends MessageSchema {}
+  export interface DefineLocaleMessage extends MessageSchema
+  {
+  }
 
   // define the datetime format schema
-  export interface DefineDateTimeFormat {}
+  export interface DefineDateTimeFormat
+  {
+  }
 
   // define the number format schema
-  export interface DefineNumberFormat {}
+  export interface DefineNumberFormat
+  {
+  }
 }
 /* eslint-enable @typescript-eslint/no-empty-interface */
 
-export default boot(({ app }) => {
+export default boot(async ({ app, store }) =>
+{
+  //Request messages
+  const useLocalTranslations = config('app.useLocalTranslations');
+  const messagesServer = useLocalTranslations ? {} : await store.dispatch('qtranslationMaster/GET_TRANSLATIONS', { refresh: false });
+  let messages = useLocalTranslations ? messagesLocal : messagesServer;
+  //===== Get default language
+  //From URL
+  let defaultLanguage = helper.getLocaleRoutePath(window.location.hash);
+  //From Cache
+  if (!defaultLanguage) defaultLanguage = await cache.get.item('site.default.locale');
+  //From VUEX Store or Config APP
+  if (!defaultLanguage) defaultLanguage = store.state.qsiteApp.defaultLocale || config('app.languages.default');
+
+  //====== Config i18n and set instance i18n
   const i18n = createI18n<{ message: MessageSchema }, MessageLanguages>({
-    locale: 'en-US',
-    legacy: false,
-    messages,
+    locale: defaultLanguage,
+    allowComposition: true,
+    fallbackLocale: defaultLanguage,
+    formatter: new customFormats(),
+    numberFormats,
+    dateTimeFormats,
+    silentTranslationWarn: true,
+    messages
   });
 
-  // Set i18n instance on app
-  app.use(i18n);
+//===== Change language to quasar components
+  await store.dispatch('qsiteApp/SET_LOCALE', {
+    locale: defaultLanguage,
+    ssrContext: false,
+    vue: app
+  })
+
+  //===== Customs short-keys to locales
+
+  //Currency translate
+  app.config.globalProperties.$trc = (num, lang) => {
+    return i18n.n(num, 'currency', lang)
+  }
+  //number translate
+  app.config.globalProperties.$trn = (num, type) => {
+    if (type == 'percent') num /= 100 //Divide Percent
+    return type ? i18n.n(num, type) : i18n.n(num)
+  }
+  //Singular translate
+  app.config.globalProperties.$tr = (key, params = {}) => {
+    return i18n.global.tc(key, 1, params)
+  }
+  //Plural translate
+  app.config.globalProperties.$trp = (key, params = {}) => {
+    return i18n.global.tc(key, 2, params)
+  }
+  //Date translate
+  app.config.globalProperties.$trd = (date, params = {type: 'short', fromUTC: false}) => {
+    //Transform date from UTC
+    if (params.fromUTC) date = moment(date).local().format('YYYY-MM-DD HH:mm:ss')
+    //Repsonse
+    return i18n.d(moment(date, 'YYYY-MM-DD HH:mm:ss').toDate(), params.type)
+  }
+  //Date translate
+  app.config.globalProperties.$trdT = (date, format = 'MMMM, DD, YYYY HH:mm') => {
+    //Transform date from UTC
+    return moment(date).format(format);
+  }
+
+  //Set i18n
+  app.use(i18n)
 });

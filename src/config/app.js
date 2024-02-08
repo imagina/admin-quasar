@@ -7,6 +7,7 @@ tagsToParceHost.forEach(tagToReplace => host = host.replace(tagToReplace, ''))
 let loadFrom = host.split('/')[1]
 
 export default {
+  baseUrl: 'https://ibuilder.ozonohosting.com',
   version: pjson.version,//Package version
   mode: (loadFrom && (['iadmin', 'ipanel'].indexOf(loadFrom) != -1)) ? loadFrom : 'iadmin',//Define load mode
   validateModeAccess: true,//Define if validate app mode access

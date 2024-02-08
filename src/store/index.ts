@@ -6,6 +6,7 @@ import {
   Store as VuexStore,
   useStore as vuexUseStore,
 } from 'vuex'
+import dynamicStores from 'src/config/stores'
 
 // import example from './module-example'
 // import { ExampleStateInterface } from './module-example/state';
@@ -46,9 +47,7 @@ declare module 'vuex' {
 
 export default store(function (/* { ssrContext } */) {
   const Store = createStore<StateInterface>({
-    modules: {
-      // example
-    },
+    modules: dynamicStores,
 
     // enable strict mode (adds overhead!)
     // for dev mode and --debug builds only

@@ -20,7 +20,6 @@ import configRoutes from '../config/localRoutes'
 
 export default route<StateInterface>(function (/* { store, ssrContext } */) {
   const dynamicRoutes = configRoutes.getRoutes()
-  console.warn(dynamicRoutes)
 
   const createHistory = process.env.SERVER
     ? createMemoryHistory

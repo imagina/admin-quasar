@@ -19,3 +19,6 @@
 [submodule "src/modules/qchat"]
 	path = src/modules/qchat
 	url = https://github.com/imagina/qchat.git
+[submodule "src/modules/qtranslation"]
+	path = src/modules/qtranslation
+	url = https://github.com/imagina/qtranslation.git

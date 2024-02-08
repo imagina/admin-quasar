@@ -11,8 +11,6 @@ class AutoLoadPages {
     if (appConfig.mode == 'iadmin') this.loadPages({ name: 'adminPages' });
     //Load ipanel pages
     if (appConfig.mode == 'ipanel') this.loadPages({ name: 'panelPages' });
-    //Update pages
-    this.loadUpdatePages();
   }
 
   //Load modules backend page

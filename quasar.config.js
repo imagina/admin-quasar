@@ -12,6 +12,7 @@
 /* eslint-disable @typescript-eslint/no-var-requires */
 const { configure } = require('quasar/wrappers');
 const path = require('node:path');
+const webpack = require('webpack')
 
 module.exports = configure(function(ctx) {
   return {
@@ -32,8 +33,13 @@ module.exports = configure(function(ctx) {
     // --> boot files are part of "main.js"
     // https://v2.quasar.dev/quasar-cli-webpack/boot-files
     boot: [
+      'axios',
+      'server-side',
+      'middleware',
+      'helper',
       'i18n',
-      'axios'
+      'client-side',
+      'components'
     ],
 
     // https://v2.quasar.dev/quasar-cli-webpack/quasar-config-js#Property%3A-css
@@ -59,10 +65,17 @@ module.exports = configure(function(ctx) {
     build: {
       vueRouterMode: 'hash', // available values: 'hash', 'history'
       extendWebpack(cfg) {
+        //Alias
         cfg.resolve.alias = {
           ...cfg.resolve.alias,
           '@imagina': path.resolve(__dirname, './src/modules')
         };
+        //Plugins
+        cfg.plugins.push(
+          new webpack.ProvidePlugin({
+            config: [path.resolve(__dirname, './src/config/plugin'), 'default']
+          })
+        )
       }
       // transpile: false,
       // publicPath: '/',
