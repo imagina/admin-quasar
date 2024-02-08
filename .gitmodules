@@ -1,0 +1,24 @@
+[submodule "src/modules/qchat"]
+	path = src/modules/qchat
+	url = https://github.com/imagina/quser.git
+[submodule "src/modules/qcheckin"]
+	path = src/modules/qcheckin
+	url = https://github.com/imagina/qcheckin.git
+[submodule "src/modules/qcrud"]
+	path = src/modules/qcrud
+	url = https://github.com/imagina/qcrud.git
+[submodule "src/modules/qgamification"]
+	path = src/modules/qgamification
+	url = https://github.com/imagina/qgamification.git
+[submodule "src/modules/qmedia"]
+	path = src/modules/qmedia
+	url = https://github.com/imagina/qmedia.git
+[submodule "src/modules/qnotification"]
+	path = src/modules/qnotification
+	url = https://github.com/imagina/qnotification.git
+[submodule "src/modules/qsite"]
+	path = src/modules/qsite
+	url = https://github.com/imagina/qsite.git
+[submodule "src/modules/quser"]
+	path = src/modules/quser
+	url = https://github.com/imagina/quser.git

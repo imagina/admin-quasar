@@ -8,3 +8,4 @@
 babel.config.cjs
 /src-ssr
 /quasar.config.*.temporary.compiled*
+/src/modules
