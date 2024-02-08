@@ -16,3 +16,6 @@
 [submodule "src/modules/quser"]
 	path = src/modules/quser
 	url = https://github.com/imagina/quser.git
+[submodule "src/modules/qchat"]
+	path = src/modules/qchat
+	url = https://github.com/imagina/qchat.git
