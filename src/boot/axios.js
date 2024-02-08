@@ -2,7 +2,7 @@ import { boot } from 'quasar/wrappers';
 import axios, { AxiosInstance } from 'axios';
 import alert from 'src/modules/qsite/_plugins/alert'
 
-export default boot(({ router, store}) => {
+export default boot(({ router, store, app}) => {
   //=========== Set base url to axios
   let baseUrl = config('app.baseUrl')
   let tagsToParceHost = ['http://', 'https://', ':8080', ':3000', 'www.']
@@ -109,4 +109,6 @@ export default boot(({ router, store}) => {
     //Return response error
     return Promise.reject(error);
   })
+  //============= Set as global
+  app.config.globalProperties.$axios = axios
 });
