@@ -2,13 +2,6 @@ import { boot } from 'quasar/wrappers';
 import axios, { AxiosInstance } from 'axios';
 import alert from 'src/modules/qsite/_plugins/alert'
 
-declare module '@vue/runtime-core' {
-  interface ComponentCustomProperties {
-    $axios: AxiosInstance;
-    $api: AxiosInstance;
-  }
-}
-
 export default boot(({ router, store}) => {
   //=========== Set base url to axios
   let baseUrl = config('app.baseUrl')

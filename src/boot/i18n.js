@@ -11,31 +11,6 @@ import messagesLocal from 'src/modules/qsite/_i18n/JsonLocal/i18n.json';
 
 import messages from 'src/i18n';
 
-export type MessageLanguages = keyof typeof messages;
-// Type-define 'en-US' as the master schema for the resource
-export type MessageSchema = typeof messages['en-US'];
-
-// See https://vue-i18n.intlify.dev/guide/advanced/typescript.html#global-resource-schema-type-definition
-/* eslint-disable @typescript-eslint/no-empty-interface */
-declare module 'vue-i18n'
-{
-  // define the locale messages schema
-  export interface DefineLocaleMessage extends MessageSchema
-  {
-  }
-
-  // define the datetime format schema
-  export interface DefineDateTimeFormat
-  {
-  }
-
-  // define the number format schema
-  export interface DefineNumberFormat
-  {
-  }
-}
-/* eslint-enable @typescript-eslint/no-empty-interface */
-
 export default boot(async ({ app, store }) =>
 {
   //Request messages
@@ -51,9 +26,9 @@ export default boot(async ({ app, store }) =>
   if (!defaultLanguage) defaultLanguage = store.state.qsiteApp.defaultLocale || config('app.languages.default');
 
   //====== Config i18n and set instance i18n
-  const i18n = createI18n<{ message: MessageSchema }, MessageLanguages>({
-    locale: defaultLanguage,
+  const i18n = createI18n({
     allowComposition: true,
+    locale: defaultLanguage,
     fallbackLocale: defaultLanguage,
     formatter: new customFormats(),
     numberFormats,

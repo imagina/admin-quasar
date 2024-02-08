@@ -13,7 +13,7 @@ function getConfigs() {
   let app = require('src/config/app').default
   let apiRoutes = require('src/config/apiRoutes').default
   let pages = require('src/config/pages').default
-  let sidebar = require('src/config/sidebar').default
+  //let sidebar = require('src/config/sidebar').default
   let stores = require('src/config/stores').default
   let main = require('src/config/main').default
 
@@ -21,7 +21,7 @@ function getConfigs() {
     app,
     apiRoutes,
     pages: orderPages(pages),
-    sidebar,
+    //sidebar,
     stores,
     main
   }
