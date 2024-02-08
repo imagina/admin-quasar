@@ -1,6 +1,14 @@
 import helper from '@imagina/qsite/_plugins/helper'
 import crud from '@imagina/qcrud/_components/crud'
 import {GET_CLARITY} from "@imagina/qsite/_store/app/actions";
+// fontawesome
+import '@fortawesome/fontawesome-pro/css/fontawesome.css'
+import '@fortawesome/fontawesome-pro/css/light.css'
+import '@fortawesome/fontawesome-pro/css/thin.css'
+import '@fortawesome/fontawesome-pro/css/duotone.css'
+import '@fortawesome/fontawesome-pro/css/brands.css'
+import '@fortawesome/fontawesome-pro/css/solid.css'
+import '@fortawesome/fontawesome-pro/css/regular.css'
 
 export default async ({app, router, store, Vue}) => {
   //====== Reset Service Worker
