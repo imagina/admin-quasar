@@ -13,25 +13,35 @@
     "build": "quasar build"
   },
   "dependencies": {
-    "axios": "^1.2.1",
-    "vue-i18n": "^9.2.2",
-    "vuex": "^4.0.1",
+    "@azure/msal-browser": "^3.9.0",
     "@quasar/extras": "^1.16.4",
+    "axios": "^1.2.1",
     "core-js": "^3.31.1",
+    "localforage": "^1.10.0",
+    "lodash": "^4.17.21",
+    "lodash.clonedeep": "^4.5.0",
+    "moment": "^2.30.1",
+    "moment-timezone": "^0.5.45",
     "quasar": "^2.8.0",
+    "tailwindcss": "npm:@tailwindcss/postcss7-compat@^2.2.17",
     "vue": "3.4.15",
+    "vue-chartjs": "^5.3.0",
+    "vue-chartjs-exporter": "^1.0.2",
+    "vue-cropperjs": "^5.0.0",
+    "vue-i18n": "^9.2.2",
     "vue-router": "^4.0.12",
-    "tailwindcss": "npm:@tailwindcss/postcss7-compat@^2.2.17"
+    "vuedraggable": "^2.24.3",
+    "vuex": "^4.0.1"
   },
   "devDependencies": {
+    "@quasar/app-webpack": "^3.9.2",
+    "@types/node": "^12.20.21",
     "@typescript-eslint/eslint-plugin": "^5.10.0",
     "@typescript-eslint/parser": "^5.10.0",
     "eslint": "^8.11.0",
-    "eslint-plugin-vue": "^9.0.0",
     "eslint-config-prettier": "^8.1.0",
-    "prettier": "^2.5.1",
-    "@types/node": "^12.20.21",
-    "@quasar/app-webpack": "^3.9.2"
+    "eslint-plugin-vue": "^9.0.0",
+    "prettier": "^2.5.1"
   },
   "browserslist": [
     "last 10 Chrome versions",
