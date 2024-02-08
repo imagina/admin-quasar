@@ -22,3 +22,6 @@
 [submodule "src/modules/qtranslation"]
 	path = src/modules/qtranslation
 	url = https://github.com/imagina/qtranslation.git
+[submodule "src/modules/qcheckin"]
+	path = src/modules/qcheckin
+	url = https://github.com/imagina/qcheckin.git
