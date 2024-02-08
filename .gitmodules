@@ -1,9 +1,3 @@
-[submodule "src/modules/qchat"]
-	path = src/modules/qchat
-	url = https://github.com/imagina/quser.git
-[submodule "src/modules/qcheckin"]
-	path = src/modules/qcheckin
-	url = https://github.com/imagina/qcheckin.git
 [submodule "src/modules/qcrud"]
 	path = src/modules/qcrud
 	url = https://github.com/imagina/qcrud.git
