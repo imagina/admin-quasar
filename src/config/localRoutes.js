@@ -69,7 +69,7 @@ class LocalRoutes {
     if (process.env.MODE !== 'ssr') {
       const notFoundRoute = {
         path: notFound,
-        component: () => import('@imagina/qsite/_layouts/blank.vue'),
+        component: () => import('layouts/blank.vue'),
         children: [
           {
             path: '',

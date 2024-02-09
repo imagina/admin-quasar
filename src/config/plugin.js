@@ -1,7 +1,7 @@
 import {findValue} from '@imagina/qsite/_plugins'
 
 export default function (value = '', fallback = null) {
-  let indexConfig = require('@imagina/qsite/_config/master/application/index').default
+  let indexConfig = require('src/config/index').default
 
   //Search Value
   let result = findValue(value, indexConfig()) || fallback
