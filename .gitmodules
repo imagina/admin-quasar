@@ -25,6 +25,3 @@
 [submodule "src/modules/qcheckin"]
 	path = src/modules/qcheckin
 	url = https://github.com/imagina/qcheckin.git
-[submodule "src/modules/qad"]
-	path = src/modules/qad
-	url = https://github.com/imagina/qad.git
