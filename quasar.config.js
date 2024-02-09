@@ -68,6 +68,7 @@ module.exports = configure(function(ctx) {
         //Alias
         cfg.resolve.alias = {
           ...cfg.resolve.alias,
+          'modules': path.resolve(__dirname, './src/modules'),
           '@imagina': path.resolve(__dirname, './src/modules')
         };
         //Plugins
