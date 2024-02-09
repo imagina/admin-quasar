@@ -1,5 +1,6 @@
 import helper from '@imagina/qsite/_plugins/helper'
 import cache from '@imagina/qsite/_plugins/cache'
+import eventBus from '@imagina/qsite/_plugins/eventBus'
 import appConfig from 'src/config/app'
 
 class Middleware {
@@ -90,11 +91,11 @@ class Middleware {
   //Emit back event
   emitBackAction() {
     //Watch if event was catch
-    this.router.app.$root.$on('back.handler.catch', () => this.allowNavigate = false)
+    eventBus.on('back.handler.catch', () => this.allowNavigate = false)
     //Dispatch event
-    this.router.app.$root.$emit('back.handler')
+    eventBus.emit('back.handler')
     //Close Event
-    this.router.app.$root.$off('back.handler.catch')
+    eventBus.off('back.handler.catch')
   }
 
   //Validate if route require authentication
