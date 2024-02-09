@@ -1,13 +1,13 @@
 import { boot } from 'quasar/wrappers';
 import { createI18n } from 'vue-i18n';
-import cache from 'src/modules/qsite/_plugins/cache';
-import helper from 'src/modules/qsite/_plugins/helper';
+import cache from 'modules/qsite/_plugins/cache';
+import helper from 'modules/qsite/_plugins/helper';
 
 // i18n data
-import customFormats from 'src/modules/qsite/_i18n/master/formats/customFormats';
-import numberFormats from 'src/modules/qsite/_i18n/master/formats/currencyFormats';
-import dateTimeFormats from 'src/modules/qsite/_i18n/master/formats/dateTimeFormats';
-import messagesLocal from 'src/modules/qsite/_i18n/JsonLocal/i18n.json';
+import customFormats from 'modules/qsite/_i18n/master/formats/customFormats';
+import numberFormats from 'modules/qsite/_i18n/master/formats/currencyFormats';
+import dateTimeFormats from 'modules/qsite/_i18n/master/formats/dateTimeFormats';
+import messagesLocal from 'modules/qsite/_i18n/JsonLocal/i18n.json';
 
 import messages from 'src/i18n';
 

@@ -1,21 +1,21 @@
-import alert from '@imagina/qsite/_plugins/alert'
-import array from '@imagina/qsite/_plugins/array'
-import date from '@imagina/qsite/_plugins/date'
-import helper from '@imagina/qsite/_plugins/helper'
-import cache from '@imagina/qsite/_plugins/cache'
-import {remember} from '@imagina/qsite/_plugins/remember'
-import hook from '@imagina/qsite/_plugins/hook'
-import crud from '@imagina/qcrud/_services/baseService'
+import alert from 'modules/qsite/_plugins/alert'
+import array from 'modules/qsite/_plugins/array'
+import date from 'modules/qsite/_plugins/date'
+import helper from 'modules/qsite/_plugins/helper'
+import cache from 'modules/qsite/_plugins/cache'
+import {remember} from 'modules/qsite/_plugins/remember'
+import hook from 'modules/qsite/_plugins/hook'
+import crud from 'modules/qcrud/_services/baseService'
 import lodash from 'lodash'
-import moment from 'vue-moment'
+import moment from 'moment'
 import {uid} from 'quasar'
 import {openURL} from 'quasar'
-import eventBus from '@imagina/qsite/_plugins/eventBus'
-import filter from '@imagina/qsite/_plugins/filter'
+import eventBus from 'modules/qsite/_plugins/eventBus'
+import filter from 'modules/qsite/_plugins/filter'
 import VueSignaturePad from 'vue-signature-pad';
-import notificationPlugin from '@imagina/qnotification/_plugins/notification'
-import {tour} from '@imagina/qgamification/_plugins/tour'
-import apiResponse from '@imagina/qcrud/_plugins/apiResponse'
+import notificationPlugin from 'modules/qnotification/_plugins/notification'
+import {tour} from 'modules/qgamification/_plugins/tour'
+import apiResponse from 'modules/qcrud/_plugins/apiResponse'
 
 export default function ({app, router, store, Vue, ssrContext}) {
   app.config.globalProperties.$alert = alert
@@ -50,7 +50,8 @@ export default function ({app, router, store, Vue, ssrContext}) {
   }
   app.config.globalProperties.$uid = uid
   app.config.globalProperties.$apiResponse = apiResponse
+  app.config.globalProperties.$moment = moment
   //[ptc] app.use(moment)
-  // app.use(moment)
+  //app.use(moment)
   app.use(VueSignaturePad)
 }

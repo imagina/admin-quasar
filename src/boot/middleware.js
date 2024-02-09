@@ -1,6 +1,6 @@
-import helper from '@imagina/qsite/_plugins/helper'
-import cache from '@imagina/qsite/_plugins/cache'
-import eventBus from '@imagina/qsite/_plugins/eventBus'
+import helper from 'modules/qsite/_plugins/helper'
+import cache from 'modules/qsite/_plugins/cache'
+import eventBus from 'modules/qsite/_plugins/eventBus'
 import appConfig from 'src/config/app'
 
 class Middleware {

@@ -8,7 +8,7 @@ class AutoLoadStore {
 
   //Load default stores
   loadDefaultStore() {
-    //this.stores.app = require('@imagina/qsite/_store/app').default
+    //this.stores.app = require('modules/qsite/_store/app').default
   }
 
   //Load modules store

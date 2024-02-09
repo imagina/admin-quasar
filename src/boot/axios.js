@@ -1,6 +1,6 @@
 import { boot } from 'quasar/wrappers';
 import axios, { AxiosInstance } from 'axios';
-import alert from 'src/modules/qsite/_plugins/alert'
+import alert from 'modules/qsite/_plugins/alert'
 
 export default boot(({ router, store, app}) => {
   //=========== Set base url to axios
