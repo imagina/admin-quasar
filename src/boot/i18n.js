@@ -2,6 +2,7 @@ import { boot } from 'quasar/wrappers';
 import { createI18n } from 'vue-i18n';
 import cache from 'modules/qsite/_plugins/cache';
 import helper from 'modules/qsite/_plugins/helper';
+import moment from 'moment';
 
 // i18n data
 import customFormats from 'modules/qsite/_i18n/master/formats/customFormats';
@@ -68,7 +69,7 @@ export default boot(async ({ app, store }) =>
     //Transform date from UTC
     if (params.fromUTC) date = moment(date).local().format('YYYY-MM-DD HH:mm:ss')
     //Repsonse
-    return i18n.d(moment(date, 'YYYY-MM-DD HH:mm:ss').toDate(), params.type)
+    return i18n.global.d(moment(date, 'YYYY-MM-DD HH:mm:ss').toDate(), params.type)
   }
   //Date translate
   app.config.globalProperties.$trdT = (date, format = 'MMMM, DD, YYYY HH:mm') => {
