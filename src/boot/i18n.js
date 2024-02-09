@@ -69,7 +69,7 @@ export default boot(async ({ app, store }) =>
     //Transform date from UTC
     if (params.fromUTC) date = moment(date).local().format('YYYY-MM-DD HH:mm:ss')
     //Repsonse
-    return i18n.d(moment(date, 'YYYY-MM-DD HH:mm:ss').toDate(), params.type)
+    return i18n.global.d(moment(date, 'YYYY-MM-DD HH:mm:ss').toDate(), params.type)
   }
   //Date translate
   app.config.globalProperties.$trdT = (date, format = 'MMMM, DD, YYYY HH:mm') => {
