@@ -1,6 +1,6 @@
-import helper from '@imagina/qsite/_plugins/helper'
-import crud from '@imagina/qcrud/_components/crud'
-import {GET_CLARITY} from "@imagina/qsite/_store/app/actions";
+import helper from 'modules/qsite/_plugins/helper'
+import crud from 'modules/qcrud/_components/crud'
+import {GET_CLARITY} from "modules/qsite/_store/app/actions";
 // fontawesome
 import '@fortawesome/fontawesome-pro/css/fontawesome.css'
 import '@fortawesome/fontawesome-pro/css/light.css'

@@ -1,5 +1,5 @@
-import helper from '@imagina/qsite/_plugins/helper'
-import cache from '@imagina/qsite/_plugins/cache'
+import helper from 'modules/qsite/_plugins/helper'
+import cache from 'modules/qsite/_plugins/cache'
 import appConfig from 'src/config/app'
 
 class Middleware {
