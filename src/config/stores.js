@@ -16,7 +16,7 @@ class AutoLoadStore {
     this.appConfig.modules.forEach(moduleName => {
       let storeModule = false
 
-      //Search module in node modules
+      //Search module in project
       try {
         storeModule = require(`src/modules/${moduleName}/_store/index`).default
       } catch (e) {
