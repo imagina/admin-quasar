@@ -1,6 +1,7 @@
-import helper from 'modules/qsite/_plugins/helper';
-import cache from 'modules/qsite/_plugins/cache';
-import appConfig from 'src/config/app';
+import helper from 'modules/qsite/_plugins/helper'
+import cache from 'modules/qsite/_plugins/cache'
+import appConfig from 'src/config/app'
+import eventBus from 'modules/qsite/_plugins/eventBus'
 
 class Middleware {
   constructor(router, store) {
@@ -90,11 +91,11 @@ class Middleware {
   //Emit back event
   emitBackAction() {
     //Watch if event was catch
-    this.router.app.$root.$on('back.handler.catch', () => this.allowNavigate = false);
+    eventBus.on('back.handler.catch', () => this.allowNavigate = false)
     //Dispatch event
-    this.router.app.$root.$emit('back.handler');
+    eventBus.emit('back.handler')
     //Close Event
-    this.router.app.$root.$off('back.handler.catch');
+    eventBus.off('back.handler.catch')
   }
 
   //Validate if route require authentication
@@ -150,7 +151,7 @@ class Middleware {
           //If is authenticated, redirect page from login to home
           if (!this.redirectTo && (to.name == 'auth.login')) this.redirectTo = { name: 'app.home' };
         } else {//If user not is authenticate
-          if (to.name != 'auth.login') this.redirectTo = { name: 'auth.login', query: { fromVueRoute: to.name } };
+          if (!['auth.login', 'auth.register'].includes(to.name)) this.redirectTo = {name: 'auth.login', query: {fromVueRoute: to.name}}
         }
       }
       //Response
