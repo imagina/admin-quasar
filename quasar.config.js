@@ -124,7 +124,23 @@ module.exports = configure(function(ctx) {
       // directives: [],
 
       // Quasar plugins
-      plugins: []
+      plugins: [
+        'AddressbarColor',
+        'AppFullscreen',
+        'AppVisibility',
+        'BottomSheet',
+        'Cookies',
+        'Dark',
+        'Dialog',
+        'Loading',
+        'LoadingBar',
+        'LocalStorage',
+        'Meta',
+        'Notify',
+        'Screen',
+        'SessionStorage',
+        'TouchHold'
+      ]
     },
 
     // animations: 'all', // --- includes all animations
