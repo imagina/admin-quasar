@@ -1,13 +1,15 @@
-import { boot } from 'quasar/wrappers';
-import axios, { AxiosInstance } from 'axios';
-import alert from 'src/modules/qsite/_plugins/alert';
+import axios from 'axios';
+import alert from 'modules/qsite/_plugins/alert';
+import { Loading } from 'quasar';
 
-export default boot(({ router, store, app }) => {
+export default function({ app, router, store, Vue, ssrContext }) {
+  //Open Loading
+  //[ptc]Loading.show()
   //=========== Set base url to axios
   let baseUrl = config('app.baseUrl');
   let tagsToParceHost = ['http://', 'https://', ':8080', ':3000', 'www.'];
   //Get base url
-  let rootHost = baseUrl || window.location.host;
+  let rootHost = baseUrl || (ssrContext ? ssrContext.req.get('host') : window.location.host);
   let host = rootHost;
   //Parse host if not exist in .env
   if (!baseUrl) {
@@ -16,8 +18,7 @@ export default boot(({ router, store, app }) => {
     host = `https://${host}`; //Add protocol
   }
   store.commit('qsiteApp/SET_BASE_URL', host); //Set base Url in store
-  store.commit('qsiteApp/SET_ORIGIN_URL', window.location.origin); //Set origin Url in store
-
+  store.commit('qsiteApp/SET_ORIGIN_URL', (ssrContext ? ssrContext.req.get('origin') : window.location.origin)); //Set origin Url in store
   axios.defaults.baseURL = `${host}/api`;// Set base url in axios
   console.log(`[AXIOS] Registered Host: ${host}`);
 
@@ -33,6 +34,29 @@ export default boot(({ router, store, app }) => {
     });
   }
 
+  async function addRequestDB(request, userID) {
+    const objReq = {
+      _id: new Date().toISOString(),
+      ...request
+    };
+    const allRequests = await cache.get.item('requests') || {};
+    if (allRequests[userID]) {
+      allRequests[userID].push(objReq);
+    } else {
+      allRequests[userID] = [];
+      allRequests[userID].push(objReq);
+    }
+    cache.set('requests', allRequests);
+    alert.standar({ message: Vue.prototype.$tr('isite.cms.message.requestAdded') });
+  }
+
+  function getOfflineTitle(config) {
+    if (config.data) {
+      return config.data.titleOffline || config.params.titleOffline;
+    }
+    return config.params.titleOffline;
+  }
+
   //========== Handle the AbortController
   let abortController = null;
   router.beforeEach(async (to, from, next) => {
@@ -46,8 +70,26 @@ export default boot(({ router, store, app }) => {
   });
 
   //========== Request interceptor
-  axios.interceptors.request.use(function(config) {
+  axios.interceptors.request.use(async function(config) {
     // Do something before request is sent
+    if (!navigator.onLine && config.method !== 'get') {
+      const titleOffline = getOfflineTitle(config);
+      const user = await cache.get.item('sessionData');
+      const request = {
+        url: config.baseURL + config.url,
+        headers: config.headers,
+        method: config.method,
+        body: config.data ? JSON.stringify(config.data) : null,
+        createdAt: new Date().getTime(),
+        userId: user.userData.id,
+        status: 'pending',
+        httpStatus: 0,
+        errorLog: '',
+        params: config.params,
+        titleOffline
+      };
+      addRequestDB(request, user.userData.id);
+    }
     store.dispatch('quserAuth/REFRESH_TOKEN');
     //Set abortController for the GET methods
     if (config.method == 'get') config.signal = abortController ? abortController.signal : null;
@@ -109,6 +151,11 @@ export default boot(({ router, store, app }) => {
     //Return response error
     return Promise.reject(error);
   });
+
+  //============ Set ignore SSL
+  //process.env.NODE_TLS_REJECT_UNAUTHORIZED = 0;
+  //axios.defaults.httpsAgent = new https.Agent({rejectUnauthorized: false})
+
   //============= Set as global
   app.config.globalProperties.$axios = axios;
-});
+}
