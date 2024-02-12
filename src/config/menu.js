@@ -1,5 +1,5 @@
 import appConfig from 'src/config/app'
-import ArrayMethods from '@imagina/qsite/_plugins/array'
+import ArrayMethods from 'modules/qsite/_plugins/array'
 
 class AutoLoadSidebars {
   getMenu(menuItems, pages) {

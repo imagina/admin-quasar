@@ -73,7 +73,7 @@ class LocalRoutes {
         children: [
           {
             path: '',
-            component: () => import('@imagina/qsite/_pages/master/404'),
+            component: () => import('modules/qsite/_pages/master/404'),
             name: 'app.not.found',
             meta: {
               permission: null,
