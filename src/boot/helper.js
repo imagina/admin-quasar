@@ -13,9 +13,9 @@ import {openURL} from 'quasar'
 import eventBus from 'modules/qsite/_plugins/eventBus'
 import filter from 'modules/qsite/_plugins/filter'
 import VueSignaturePad from 'vue-signature-pad';
-import notificationPlugin from '@imagina/qnotification/_plugins/notification'
-import {tour} from '@imagina/qgamification/_plugins/tour'
-import apiResponse from '@imagina/qcrud/_plugins/apiResponse'
+import notificationPlugin from 'modules/qnotification/_plugins/notification'
+import {tour} from 'modules/qgamification/_plugins/tour'
+import apiResponse from 'modules/qcrud/_plugins/apiResponse'
 
 export default function ({app, router, store, Vue, ssrContext}) {
   app.config.globalProperties.$alert = alert
