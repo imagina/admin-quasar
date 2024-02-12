@@ -1,4 +1,4 @@
-import {findValue} from '@imagina/qsite/_plugins'
+import {findValue} from 'modules/qsite/_plugins'
 
 export default function (value = '', fallback = null) {
   let indexConfig = require('src/config/index').default
