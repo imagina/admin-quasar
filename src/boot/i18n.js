@@ -49,12 +49,12 @@ export default boot(async ({ app, store }) =>
 
   //Currency translate
   app.config.globalProperties.$trc = (num, lang) => {
-    return i18n.n(num, 'currency', lang)
+    return i18n.global.n(num, 'currency', lang)
   }
   //number translate
   app.config.globalProperties.$trn = (num, type) => {
     if (type == 'percent') num /= 100 //Divide Percent
-    return type ? i18n.n(num, type) : i18n.n(num)
+    return type ? i18n.global.n(num, type) : i18n.n(num)
   }
   //Singular translate
   app.config.globalProperties.$tr = (key, params = {}) => {
