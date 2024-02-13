@@ -2,7 +2,7 @@ import { boot } from 'quasar/wrappers';
 import { createI18n } from 'vue-i18n';
 import cache from 'src/modules/qsite/_plugins/cache';
 import helper from 'src/modules/qsite/_plugins/helper';
-import moment from 'moment';
+import translations from 'src/modules/qsite/_plugins/i18n.ts'
 
 // i18n data
 import { messageCompiler } from 'src/modules/qsite/_i18n/master/formats/customFormats';
@@ -34,7 +34,14 @@ export default boot(async ({ app, store }) =>
     silentTranslationWarn: true,
     messages
   });
-
+  const {
+    trc,
+    trn,
+    tr,
+    trp,
+    trd,
+    trdT
+  } = translations(i18n);
 //===== Change language to quasar components
   await store.dispatch('qsiteApp/SET_LOCALE', {
     locale: defaultLanguage,
@@ -45,34 +52,17 @@ export default boot(async ({ app, store }) =>
   //===== Customs short-keys to locales
 
   //Currency translate
-  app.config.globalProperties.$trc = (num, lang) => {
-    return i18n.global.n(num, 'currency', lang)
-  }
+  app.config.globalProperties.$trc = trc;
   //number translate
-  app.config.globalProperties.$trn = (num, type) => {
-    if (type == 'percent') num /= 100 //Divide Percent
-    return type ? i18n.global.n(num, type) : i18n.n(num)
-  }
+  app.config.globalProperties.$trn = trn;
   //Singular translate
-  app.config.globalProperties.$tr = (key, params = {}) => {
-    return i18n.global.tc(key, 1, params)
-  }
+  app.config.globalProperties.$tr = tr;
   //Plural translate
-  app.config.globalProperties.$trp = (key, params = {}) => {
-    return i18n.global.tc(key, 2, params)
-  }
+  app.config.globalProperties.$trp = trp;
   //Date translate
-  app.config.globalProperties.$trd = (date, params = {type: 'short', fromUTC: false}) => {
-    //Transform date from UTC
-    if (params.fromUTC) date = moment(date).local().format('YYYY-MM-DD HH:mm:ss')
-    //Repsonse
-    return i18n.global.d(moment(date, 'YYYY-MM-DD HH:mm:ss').toDate(), params.type)
-  }
+  app.config.globalProperties.$trd = trd;
   //Date translate
-  app.config.globalProperties.$trdT = (date, format = 'MMMM, DD, YYYY HH:mm') => {
-    //Transform date from UTC
-    return moment(date).format(format);
-  }
+  app.config.globalProperties.$trdT = trdT
 
   //Set i18n
   app.use(i18n)
