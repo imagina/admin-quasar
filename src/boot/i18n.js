@@ -7,7 +7,7 @@ import translations from 'src/modules/qsite/_plugins/i18n.ts'
 // i18n data
 import { messageCompiler } from 'src/modules/qsite/_i18n/master/formats/customFormats';
 import numberFormats from 'src/modules/qsite/_i18n/master/formats/currencyFormats';
-import datetimeFormats from 'src/modules/qsite/_i18n/master/formats/datetimeFormats';
+import datetimeFormats from 'src/modules/qsite/_i18n/master/formats/dateTimeFormats';
 import messagesLocal from 'src/modules/qsite/_i18n/JsonLocal/i18n.json';
 
 export default boot(async ({ app, store }) =>
