@@ -17,7 +17,7 @@ export default function ({app, router, store, Vue, ssrContext}) {
   app.config.globalProperties.$hook = new utils.hook(store)
   app.config.globalProperties.$notification = new notificationPlugin(store)
   app.config.globalProperties.$clone = (dataToClone) => {
-    return lodash.cloneDeepWith(dataToClone, value => {
+    return utils.lodash.cloneDeepWith(dataToClone, value => {
       //Not clone File or Blob  type
       if (value instanceof File || value instanceof Blob) {
         return value
