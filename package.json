@@ -37,6 +37,7 @@
     "quasar": "^2.8.0",
     "tailwindcss": "npm:@tailwindcss/postcss7-compat@^2.2.17",
     "vue": "3.4.15",
+    "vue-advanced-chat": "^2.0.10",
     "vue-chartjs": "^5.3.0",
     "vue-chartjs-exporter": "^1.0.2",
     "vue-cropperjs": "^5.0.0",
