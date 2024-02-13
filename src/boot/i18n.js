@@ -5,19 +5,17 @@ import helper from 'src/modules/qsite/_plugins/helper';
 import moment from 'moment';
 
 // i18n data
-import customFormats from 'src/modules/qsite/_i18n/master/formats/customFormats';
+import { messageCompiler } from 'src/modules/qsite/_i18n/master/formats/customFormats';
 import numberFormats from 'src/modules/qsite/_i18n/master/formats/currencyFormats';
-import dateTimeFormats from 'src/modules/qsite/_i18n/master/formats/dateTimeFormats';
+import datetimeFormats from 'src/modules/qsite/_i18n/master/formats/datetimeFormats';
 import messagesLocal from 'src/modules/qsite/_i18n/JsonLocal/i18n.json';
-
-import messages from 'src/i18n';
 
 export default boot(async ({ app, store }) =>
 {
   //Request messages
   const useLocalTranslations = config('app.useLocalTranslations');
   const messagesServer = useLocalTranslations ? {} : await store.dispatch('qtranslationMaster/GET_TRANSLATIONS', { refresh: false });
-  let messages = useLocalTranslations ? messagesLocal : messagesServer;
+  const messages = useLocalTranslations ? messagesLocal : messagesServer;
   //===== Get default language
   //From URL
   let defaultLanguage = helper.getLocaleRoutePath(window.location.hash);
@@ -28,12 +26,11 @@ export default boot(async ({ app, store }) =>
 
   //====== Config i18n and set instance i18n
   const i18n = createI18n({
-    allowComposition: true,
     locale: defaultLanguage,
     fallbackLocale: defaultLanguage,
-    formatter: new customFormats(),
+    messageCompiler,
     numberFormats,
-    dateTimeFormats,
+    datetimeFormats,
     silentTranslationWarn: true,
     messages
   });
