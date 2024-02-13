@@ -196,7 +196,7 @@ export default async ({router, store, app}) => {
     //Validate if go to next route
     if (!middleware.allowNavigate) {
       middleware.allowNavigate = true
-      return next(false)
+      next(false)
     }
 
     //Validate route authentication and permissions
