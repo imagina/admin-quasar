@@ -11,3 +11,4 @@ babel.config.cjs
 /src/modules
 /src/config
 /src/boot
+/src/plugins

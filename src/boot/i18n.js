@@ -1,9 +1,7 @@
 import { boot } from 'quasar/wrappers';
 import { createI18n } from 'vue-i18n';
-import cache from 'src/modules/qsite/_plugins/cache';
-import helper from 'src/modules/qsite/_plugins/helper';
-import translations from 'src/modules/qsite/_plugins/i18n.ts'
-import moment from 'moment';
+import { cache, helper } from 'src/plugins/utils';
+import translations from 'src/plugins/i18n.ts'
 
 // i18n data
 import customFormats from 'src/modules/qsite/_i18n/master/formats/customFormats';

@@ -1,4 +1,4 @@
-import helper from 'modules/qsite/_plugins/helper'
+import { helper } from 'src/plugins/utils'
 import crud from 'modules/qcrud/_components/crud'
 import {GET_CLARITY} from "modules/qsite/_store/app/actions";
 // fontawesome
