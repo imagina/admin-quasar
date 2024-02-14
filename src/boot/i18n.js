@@ -1,7 +1,7 @@
 import { boot } from 'quasar/wrappers';
 import { createI18n } from 'vue-i18n';
 import { cache, helper } from 'src/plugins/utils';
-import translations from 'src/plugins/i18n.ts'
+import pluginI18n from 'src/plugins/i18n.ts';
 
 // i18n data
 import { messageCompiler } from 'src/modules/qsite/_i18n/master/formats/customFormats';
@@ -9,8 +9,7 @@ import numberFormats from 'src/modules/qsite/_i18n/master/formats/currencyFormat
 import datetimeFormats from 'src/modules/qsite/_i18n/master/formats/dateTimeFormats';
 import messagesLocal from 'src/modules/qsite/_i18n/JsonLocal/i18n.json';
 
-export default boot(async ({ app, store }) =>
-{
+export default boot(async ({ app, store }) => {
   //Request messages
   const useLocalTranslations = config('app.useLocalTranslations');
   const messagesServer = useLocalTranslations ? {} : await store.dispatch('qtranslationMaster/GET_TRANSLATIONS', { refresh: false });
@@ -33,6 +32,7 @@ export default boot(async ({ app, store }) =>
     silentTranslationWarn: true,
     messages
   });
+  pluginI18n.trans = i18n;
   const {
     trc,
     trn,
@@ -40,17 +40,15 @@ export default boot(async ({ app, store }) =>
     trp,
     trd,
     trdT
-  } = translations(i18n);
+  } = pluginI18n.trans;
+
 //===== Change language to quasar components
   await store.dispatch('qsiteApp/SET_LOCALE', {
     locale: defaultLanguage,
     ssrContext: false,
     vue: app
-  })
-
+  });
   //===== Customs short-keys to locales
-
-  //Currency translate
   app.config.globalProperties.$trc = trc;
   //number translate
   app.config.globalProperties.$trn = trn;
@@ -61,8 +59,11 @@ export default boot(async ({ app, store }) =>
   //Date translate
   app.config.globalProperties.$trd = trd;
   //Date translate
-  app.config.globalProperties.$trdT = trdT
+  app.config.globalProperties.$trdT = trdT;
+
+  //Currency translate
+
 
   //Set i18n
-  app.use(i18n)
+  app.use(i18n);
 });
