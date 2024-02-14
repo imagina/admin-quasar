@@ -3,7 +3,7 @@ import VueSignaturePad from 'vue-signature-pad';
 import notificationPlugin from 'modules/qnotification/_plugins/notification'
 import {tour} from 'modules/qgamification/_plugins/tour'
 import apiResponse from 'modules/qcrud/_plugins/apiResponse'
-import utils from 'modules/qsite/_plugins/utils.ts'
+import utils from 'src/plugins/utils.ts'
 
 export default function ({app, router, store, Vue, ssrContext}) {
   app.config.globalProperties.$alert = utils.alert

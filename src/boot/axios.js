@@ -1,5 +1,5 @@
 import axios from 'axios';
-import alert from 'modules/qsite/_plugins/alert';
+import { alert } from 'src/plugins/utils';
 import { Loading } from 'quasar';
 
 export default function({ app, router, store, Vue, ssrContext }) {

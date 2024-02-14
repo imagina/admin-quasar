@@ -1,7 +1,5 @@
-import helper from 'modules/qsite/_plugins/helper'
-import cache from 'modules/qsite/_plugins/cache'
+import { helper, cache, eventBus } from 'src/plugins/utils'
 import appConfig from 'src/config/app'
-import eventBus from 'modules/qsite/_plugins/eventBus'
 
 class Middleware {
   constructor(router, store) {
