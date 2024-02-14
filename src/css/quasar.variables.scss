@@ -11,14 +11,14 @@
 // It's highly recommended to change the default colors
 // to match your app's branding.
 // Tip: Use the "Theme Builder" on Quasar's documentation website.
-$primary: var(--q-color-primary);
-$secondary: var(--q-color-secondary);
-$accent: var(--q-color-accent);
-$positive: var(--q-color-positive);
-$negative: var(--q-color-negative);
+$primary: var(--q-primary);
+$secondary: var(--q-secondary);
+$accent: var(--q-accent);
+$positive: var(--q-positive);
+$negative: var(--q-negative);
 $info: var(--q-info);
-$warning: var(--q-color-warning);
-$dark: var(--q-color-dark);
+$warning: var(--q-warning);
+$dark: var(--q-dark);
 $tertiary: #4C5D94;
 
 $breakpoint-xs: 575px;
@@ -30,8 +30,8 @@ $breakpoint-lg: 1199px;
 $custom-radius: 10px;
 $custom-radius-items: 10px;
 $custom-box-shadow: 0px 16px 24px rgba(3, 27, 102, 0.06), 0px 2px 6px rgba(3, 27, 102, 0.04), 0px 0px 1px rgba(3, 27, 102, 0.04);
-$green: var(--q-color-teal-7);
-$red: var(--q-color-read-7);
+$green: var(--q-teal-7);
+$red: var(--q-read-7);
 
 //Builder
 $primaryBuilder: #5333ed;
