@@ -11,6 +11,8 @@
 // It's highly recommended to change the default colors
 // to match your app's branding.
 // Tip: Use the "Theme Builder" on Quasar's documentation website.
+@use "quasar/src/css/variables" as q;
+
 $primary: var(--q-primary);
 $secondary: var(--q-secondary);
 $accent: var(--q-accent);
@@ -30,8 +32,8 @@ $breakpoint-lg: 1199px;
 $custom-radius: 10px;
 $custom-radius-items: 10px;
 $custom-box-shadow: 0px 16px 24px rgba(3, 27, 102, 0.06), 0px 2px 6px rgba(3, 27, 102, 0.04), 0px 0px 1px rgba(3, 27, 102, 0.04);
-$green: var(--q-teal-7);
-$red: var(--q-read-7);
+$green: q.$teal-7;
+$red: q.$red-7;
 
 //Builder
 $primaryBuilder: #5333ed;
