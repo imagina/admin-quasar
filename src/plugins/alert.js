@@ -41,7 +41,7 @@ class Alert {
   //alert standar
   standar(params = {}){
     params = this.getGlobalParams(params)
-    params.icon = params.icon || 'notifications'
+    params.icon = params.icon || 'fa-light fa-bell'
     params.color = 'bg-grey-14'
     //Show
     if (params.mode && (params.mode == 'modal')) this.showModal(params)
@@ -51,7 +51,7 @@ class Alert {
   //Alert success
   success(params = {}) {
     params = this.getGlobalParams(params)
-    params.icon = params.icon || 'notifications'
+    params.icon = params.icon || 'fa-light fa-bell'
     params.color = 'green'
     //Show
     if (params.mode && (params.mode == 'modal')) this.showModal(params)
@@ -61,7 +61,7 @@ class Alert {
   //Alert Error
   error(params = {}) {
     params = this.getGlobalParams(params)
-    params.icon = params.icon || 'error'
+    params.icon = params.icon || 'fas fa-info-circle'
     params.color = 'red'
     //Show
     if (params.mode && (params.mode == 'modal')) this.showModal(params)
@@ -71,7 +71,7 @@ class Alert {
   //Alert info
   info(params = {}) {
     params = this.getGlobalParams(params)
-    params.icon = params.icon || 'info'
+    params.icon = params.icon || 'fa-solid fa-circle-info'
     params.color = 'cyan'
     //Show
     if (params.mode && (params.mode == 'modal')) this.showModal(params)
@@ -81,7 +81,7 @@ class Alert {
   //Alert warning
   warning(params = {}) {
     params = this.getGlobalParams(params)
-    params.icon = params.icon || 'warning'
+    params.icon = params.icon || 'fa fa-warning'
     params.color = 'orange'
     //Show
     if (params.mode && (params.mode == 'modal')) this.showModal(params)
@@ -91,7 +91,7 @@ class Alert {
   //Alert light
   light(params = {}) {
     params = this.getGlobalParams(params)
-    params.icon = params.icon || 'notifications'
+    params.icon = params.icon || 'fa-light fa-bell'
     params.color = 'faded'
     //Show
     if (params.mode && (params.mode == 'modal')) this.showModal(params)
@@ -101,7 +101,7 @@ class Alert {
   //Alert dark
   dark(params = {}) {
     params = this.getGlobalParams(params)
-    params.icon = params.icon || 'notifications'
+    params.icon = params.icon || 'fa-light fa-bell'
     params.color = 'black'
     //Show
     if (params.mode && (params.mode == 'modal')) this.showModal(params)
