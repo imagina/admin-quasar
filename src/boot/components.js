@@ -1,6 +1,5 @@
 import { Loading } from 'quasar';
-import treeSelect from '@riophae/vue-treeselect';
-//[ptc]import '@riophae/vue-treeselect/dist/vue-treeselect.css'
+import treeSelect from '@tkmam1x/vue3-treeselect';
 import crud from 'modules/qcrud/_components/crud';
 import innerLoading from 'modules/qsite/_components/master/innerLoading';
 import notFound from 'modules/qsite/_components/master/404';
