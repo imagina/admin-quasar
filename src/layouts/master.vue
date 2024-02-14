@@ -32,8 +32,7 @@
       <!--Router view-->
       <div id="routerPageContent" class="layout-padding">
         <router-view v-if="appState.loadPage" />
-        <!--[ptc]-->
-        <!--<Alert/>-->
+        <Alert/>
       </div>
     </q-page-container>
 
@@ -53,21 +52,20 @@
 
 <script>
 //Components Admin
-import headerAdminTheme1 from 'src/modules/qsite/_components/admin/theme1/header';
-import headerAdminTheme2 from 'src/modules/qsite/_components/admin/theme2/header';
-import drawersAdminTheme1 from 'src/modules/qsite/_components/admin/theme1/drawers';
-import drawersAdminTheme2 from 'src/modules/qsite/_components/admin/theme2/drawers';
-import footerAdminTheme1 from 'src/modules/qsite/_components/admin/theme1/footer';
-import footerAdminTheme2 from 'src/modules/qsite/_components/admin/theme2/footer';
+import headerAdminTheme1 from 'modules/qsite/_components/admin/theme1/header';
+import headerAdminTheme2 from 'modules/qsite/_components/admin/theme2/header';
+import drawersAdminTheme1 from 'modules/qsite/_components/admin/theme1/drawers';
+import drawersAdminTheme2 from 'modules/qsite/_components/admin/theme2/drawers';
+import footerAdminTheme1 from 'modules/qsite/_components/admin/theme1/footer';
+import footerAdminTheme2 from 'modules/qsite/_components/admin/theme2/footer';
 //Components Panel
-import headerPanel from 'src/modules/qsite/_components/panel/header';
-import drawersPanel from 'src/modules/qsite/_components/panel/drawers';
-import footerPanel from 'src/modules/qsite/_components/panel/footer';
+import headerPanel from 'modules/qsite/_components/panel/header';
+import drawersPanel from 'modules/qsite/_components/panel/drawers';
+import footerPanel from 'modules/qsite/_components/panel/footer';
 //Components
-import cropperComponent from 'src/modules/qsite/_components/master/cropper';
-import activitiesActions from 'src/modules/qgamification/_components/activitiesActions/index.vue';
-//[ptc]
-//import Alert from '@imagina/qoffline/_components/alert.vue'
+import cropperComponent from 'modules/qsite/_components/master/cropper';
+import activitiesActions from 'modules/qgamification/_components/activitiesActions/index.vue';
+import Alert from 'modules/qoffline/_components/alert.vue'
 
 export default {
   name: 'MasterLayout',
@@ -99,10 +97,9 @@ export default {
     //Panel
     headerPanel,
     drawersPanel,
-    footerPanel
+    footerPanel,
     //Offline
-    //[ptc] Alert
-    //Alert
+    Alert
   },
   watch: {
     shouldChangePassword(data) {

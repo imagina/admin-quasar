@@ -1,29 +1,58 @@
 import axios from 'axios';
 import { alert } from 'src/plugins/utils';
 import { Loading } from 'quasar';
+import qs from 'qs'
 
-export default function({ app, router, store, Vue, ssrContext }) {
+export default function({ app, router, store, ssrContext }) {
   //Open Loading
-  //[ptc]Loading.show()
+  Loading.show()
   //=========== Set base url to axios
-  let baseUrl = config('app.baseUrl');
-  let tagsToParceHost = ['http://', 'https://', ':8080', ':3000', 'www.'];
+  const baseUrl = config('app.baseUrl');
+  
+  const tagsToParceHost = [
+    'http://', 
+    'https://', 
+    ':8080', 
+    ':3000', 
+    'www.'
+  ];
   //Get base url
-  let rootHost = baseUrl || (ssrContext ? ssrContext.req.get('host') : window.location.host);
+  const rootHost = baseUrl || (ssrContext ? ssrContext.req.get('host') : window.location.host);
   let host = rootHost;
   //Parse host if not exist in .env
   if (!baseUrl) {
-    tagsToParceHost.forEach(tagToReplace => host = host.replace(tagToReplace, ''));
+    tagsToParceHost.forEach(
+      tagToReplace => host = host.replace(tagToReplace, '')
+    );
     if (rootHost.indexOf('www') != -1) host = `www.${host}`;//Set again WWW
     host = `https://${host}`; //Add protocol
   }
   store.commit('qsiteApp/SET_BASE_URL', host); //Set base Url in store
-  store.commit('qsiteApp/SET_ORIGIN_URL', (ssrContext ? ssrContext.req.get('origin') : window.location.origin)); //Set origin Url in store
+  store.commit(
+    'qsiteApp/SET_ORIGIN_URL', 
+    (ssrContext ? ssrContext.req.get('origin') : window.location.origin)
+  ); //Set origin Url in store
   axios.defaults.baseURL = `${host}/api`;// Set base url in axios
   console.log(`[AXIOS] Registered Host: ${host}`);
 
   //========== Set default params: setting
   axios.defaults.params = { setting: {} };
+
+  axios.defaults.paramsSerializer = function(params) {
+    return qs.stringify(
+      Object.fromEntries(
+        Object.entries(params)
+          .map(
+            ([key, value]) => [
+              key, 
+              typeof value === 'object' 
+                ? JSON.stringify(value) 
+                : value
+            ]
+          )
+      )
+    );
+  };
 
   //========== Show alert from interceptor
   function showMessages(messages = []) {
@@ -35,6 +64,7 @@ export default function({ app, router, store, Vue, ssrContext }) {
   }
 
   async function addRequestDB(request, userID) {
+    const globalProperties = app.config.globalProperties;
     const objReq = {
       _id: new Date().toISOString(),
       ...request
@@ -47,7 +77,9 @@ export default function({ app, router, store, Vue, ssrContext }) {
       allRequests[userID].push(objReq);
     }
     cache.set('requests', allRequests);
-    alert.standar({ message: Vue.prototype.$tr('isite.cms.message.requestAdded') });
+    alert.standar({ 
+      message: globalProperties.$tr('isite.cms.message.requestAdded') 
+    });
   }
 
   function getOfflineTitle(config) {
@@ -92,7 +124,9 @@ export default function({ app, router, store, Vue, ssrContext }) {
     }
     store.dispatch('quserAuth/REFRESH_TOKEN');
     //Set abortController for the GET methods
-    if (config.method == 'get') config.signal = abortController ? abortController.signal : null;
+    if (config.method == 'get') {
+      config.signal = abortController ? abortController.signal : null;
+    }
     //Return config
     return config;
   }, function(error) {
@@ -102,7 +136,9 @@ export default function({ app, router, store, Vue, ssrContext }) {
   //========== Response interceptor
   axios.interceptors.response.use((response) => {
     //Show messages
-    if (response.data && response.data.messages) showMessages(response.data.messages);
+    if (response.data && response.data.messages) {
+      showMessages(response.data.messages);
+    }
     //Response
     return response;
   }, (error) => {
@@ -115,17 +151,24 @@ export default function({ app, router, store, Vue, ssrContext }) {
           case 401:
             let routeName = router.currentRoute.value.name;
             //Logout
-            if ((routeName != 'auth.login') && (routeName != 'auth.change.password'))
-              router.push({ name: 'auth.logout' });
+            if (
+              (routeName != 'auth.login') && 
+              (routeName != 'auth.change.password')
+            ) router.push({ name: 'auth.logout' });
             break;
           case 400://Intercep request errors to show alert message
             let errorsRequest = {};
             //Map the errors
             if (error.response.data) {
-              if (error.response.data.errors) errorsRequest = JSON.parse(error.response.data.errors);
+              if (error.response.data.errors) {
+                errorsRequest = JSON.parse(error.response.data.errors);
+              }
               if (error.response.data.messages) {
                 error.response.data.messages.forEach(item => {
-                  errorsRequest = { ...errorsRequest, ...JSON.parse(item.message) };
+                  errorsRequest = { 
+                    ...errorsRequest, 
+                    ...JSON.parse(item.message) 
+                  };
                 });
               }
             }
@@ -143,7 +186,10 @@ export default function({ app, router, store, Vue, ssrContext }) {
             }
             break;
           default:
-            if (error.response.data && error.response.data.messages) showMessages(error.response.data.messages);
+            if (
+              error.response.data && 
+              error.response.data.messages
+            ) showMessages(error.response.data.messages);
             break;
         }
       }
