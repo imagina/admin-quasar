@@ -1,19 +1,19 @@
 import axios from 'axios';
 import { alert } from 'src/plugins/utils';
 import { Loading } from 'quasar';
-import qs from 'qs'
+import qs from 'qs';
 
 export default function({ app, router, store, ssrContext }) {
   //Open Loading
-  Loading.show()
+  Loading.show();
   //=========== Set base url to axios
   const baseUrl = config('app.baseUrl');
-  
+
   const tagsToParceHost = [
-    'http://', 
-    'https://', 
-    ':8080', 
-    ':3000', 
+    'http://',
+    'https://',
+    ':8080',
+    ':3000',
     'www.'
   ];
   //Get base url
@@ -29,7 +29,7 @@ export default function({ app, router, store, ssrContext }) {
   }
   store.commit('qsiteApp/SET_BASE_URL', host); //Set base Url in store
   store.commit(
-    'qsiteApp/SET_ORIGIN_URL', 
+    'qsiteApp/SET_ORIGIN_URL',
     (ssrContext ? ssrContext.req.get('origin') : window.location.origin)
   ); //Set origin Url in store
   axios.defaults.baseURL = `${host}/api`;// Set base url in axios
@@ -38,18 +38,14 @@ export default function({ app, router, store, ssrContext }) {
   //========== Set default params: setting
   axios.defaults.params = { setting: {} };
 
+  //========== Serialize the params
   axios.defaults.paramsSerializer = function(params) {
     return qs.stringify(
       Object.fromEntries(
-        Object.entries(params)
-          .map(
-            ([key, value]) => [
-              key, 
-              typeof value === 'object' 
-                ? JSON.stringify(value) 
-                : value
-            ]
-          )
+        Object.entries(params).map(([key, value]) => [
+          key,
+          typeof value === 'object' ? JSON.stringify(value) : value
+        ])
       )
     );
   };
@@ -77,8 +73,8 @@ export default function({ app, router, store, ssrContext }) {
       allRequests[userID].push(objReq);
     }
     cache.set('requests', allRequests);
-    alert.standar({ 
-      message: globalProperties.$tr('isite.cms.message.requestAdded') 
+    alert.standar({
+      message: globalProperties.$tr('isite.cms.message.requestAdded')
     });
   }
 
@@ -152,7 +148,7 @@ export default function({ app, router, store, ssrContext }) {
             let routeName = router.currentRoute.value.name;
             //Logout
             if (
-              (routeName != 'auth.login') && 
+              (routeName != 'auth.login') &&
               (routeName != 'auth.change.password')
             ) router.push({ name: 'auth.logout' });
             break;
@@ -165,9 +161,9 @@ export default function({ app, router, store, ssrContext }) {
               }
               if (error.response.data.messages) {
                 error.response.data.messages.forEach(item => {
-                  errorsRequest = { 
-                    ...errorsRequest, 
-                    ...JSON.parse(item.message) 
+                  errorsRequest = {
+                    ...errorsRequest,
+                    ...JSON.parse(item.message)
                   };
                 });
               }
@@ -187,7 +183,7 @@ export default function({ app, router, store, ssrContext }) {
             break;
           default:
             if (
-              error.response.data && 
+              error.response.data &&
               error.response.data.messages
             ) showMessages(error.response.data.messages);
             break;
