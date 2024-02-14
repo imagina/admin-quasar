@@ -88,5 +88,5 @@ export default {
     route: 'app.home'
   },
   //Define from where use the translations
-  useLocalTranslations: false
+  useLocalTranslations: true
 }
