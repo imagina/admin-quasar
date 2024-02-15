@@ -15,6 +15,18 @@ class AutoLoadPages {
 
   //Load modules backend page
   loadPages(params = {}) {
+    //Load pages of Root
+    let configRoot = false;
+    let namePage = `${params.prefix || ''}app`;
+    //Search pages in root
+    try {
+      configRoot = require(`src/config/${params.name}`);
+    } catch (e) {
+    }
+
+    this.pages[namePage] = configRoot ? configRoot.default : {};
+
+    //Load pages of modules
     this.modules.forEach(moduleName => {
       let configPage = false;
       let namePage = `${params.prefix || ''}${moduleName}`;

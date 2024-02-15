@@ -17,8 +17,8 @@ class AutoLoadSidebar {
 
   //Add extra fields to sidebar
   addDefaultItems() {
-    if (this.pages.mainqsite)
-      this.sidebar['app'] = this.pages.mainqsite.home || {};
+    if (this.pages.mainapp)
+      this.sidebar['app'] = this.pages.mainapp.home || {};
   }
 
   //Load node_modules sidebar
@@ -38,6 +38,21 @@ class AutoLoadSidebar {
         });
       }
     });
+
+    //Set root Pages
+    let sidebarRoot = false;
+
+    //Search module in project
+    try {
+      sidebarRoot = require(`src/config/${params.name}`).default;
+    } catch (e) {
+    }
+
+    if (sidebarRoot && sidebarRoot.length) {
+      sidebarRoot.forEach((node, index) => {
+        this.sidebar[`${name}${index ? (index + 1) : ''}`] = node;
+      });
+    }
   }
 
   //Order sidebar
