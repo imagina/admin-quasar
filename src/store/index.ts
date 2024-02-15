@@ -6,7 +6,7 @@ import {
   Store as VuexStore,
   useStore as vuexUseStore,
 } from 'vuex'
-import dynamicStores from 'src/config/stores'
+import dynamicStores from '../setup/stores'
 
 // import example from './module-example'
 // import { ExampleStateInterface } from './module-example/state';

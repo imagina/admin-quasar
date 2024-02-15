@@ -1,7 +1,7 @@
 class AutoLoadStore {
   constructor() {
     this.stores = {}
-    this.appConfig = require('src/config/app').default
+    this.appConfig = require('src/setup/app').default
     this.loadDefaultStore()
     this.loadModulesStore()
   }

@@ -1,5 +1,5 @@
 import { helper, cache, eventBus } from 'src/plugins/utils'
-import appConfig from 'src/config/app'
+import appConfig from 'src/setup/app'
 
 class Middleware {
   constructor(router, store) {

@@ -1,4 +1,3 @@
-import appConfig from 'src/config/app'
 import ArrayMethods from 'src/plugins/array'
 
 class AutoLoadSidebars {

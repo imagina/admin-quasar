@@ -7,7 +7,7 @@ import {
 } from 'vue-router';
 import { StateInterface } from '../store';
 //import routes from './routes';
-import configRoutes from '../config/localRoutes'
+import configRoutes from '../setup/localRoutes'
 
 /*
  * If not building with SSR mode, you can
