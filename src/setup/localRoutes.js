@@ -1,4 +1,4 @@
-import pagesConfig from 'src/config/pages'
+import pagesConfig from 'src/setup/pages'
 
 class LocalRoutes {
   constructor() {

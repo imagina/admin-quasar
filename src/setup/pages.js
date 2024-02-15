@@ -1,4 +1,4 @@
-import appConfig from 'src/config/app';
+import appConfig from 'src/setup/app';
 
 class AutoLoadPages {
   constructor() {

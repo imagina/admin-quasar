@@ -74,7 +74,7 @@ module.exports = configure(function(ctx) {
         //Plugins
         cfg.plugins.push(
           new webpack.ProvidePlugin({
-            config: [path.resolve(__dirname, './src/config/plugin'), 'default']
+            config: [path.resolve(__dirname, './src/setup/plugin'), 'default']
           })
         )
       }

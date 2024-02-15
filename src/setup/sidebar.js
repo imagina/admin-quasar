@@ -1,5 +1,5 @@
-import appConfig from 'src/config/app';
-import pagesConfig from 'src/config/pages';
+import appConfig from 'src/setup/app';
+import pagesConfig from 'src/setup/pages';
 
 class AutoLoadSidebar {
   constructor() {
