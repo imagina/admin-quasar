@@ -1,6 +1,4 @@
-/* import pages from 'src/setup/pages' // Get Pages from config
+import pages from 'src/setup/pages' // Get Pages from config
 
 //Panel app
-export default [
-  pages.qad.ads,
-]*/
+export default []
