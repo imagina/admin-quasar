@@ -73,7 +73,7 @@ class LocalRoutes {
         children: [
           {
             path: '',
-            component: () => import('modules/qsite/_pages/master/404'),
+            component: () => import('src/pages/404'),
             name: 'app.not.found',
             meta: {
               permission: null,

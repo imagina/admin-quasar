@@ -10,6 +10,7 @@ babel.config.cjs
 /quasar.config.*.temporary.compiled*
 /src/modules
 /src/config
+/src/pages
 /src/setup
 /src/boot
 /src/plugins
