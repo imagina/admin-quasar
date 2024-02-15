@@ -8,40 +8,28 @@
       </div>
       <!--Router-->
       <div id="routerPageContent" class="layout-padding">
-        <router-view/>
+        <router-view />
       </div>
     </q-page-container>
   </q-layout>
 </template>
 
 <script>
-export default {
-  meta() {
-    let routetitle = ((this.$route.meta && this.$route.meta.title) ? this.$route.meta.title : '')
-    let siteName = this.$store.getters['qsiteApp/getSettingValueByName']('core::site-name')
-    let siteDescription = this.$store.getters['qsiteApp/getSettingValueByName']('core::site-description')
-    let iconHref = this.$store.getters['qsiteApp/getSettingMediaByName']('isite::favicon').path
+import metaDataMixin from './metaDataMixin';
 
-    return {
-      title: `${this.$tr(routetitle)} | ${siteName}`,
-      meta: {
-        description: {name: 'description', content: (siteDescription || siteName)},
-      },
-      link: [{rel: 'icon', href: iconHref, id: 'icon'}],
-    }
-  },
+export default {
+  mixins: [metaDataMixin],
   computed: {
     //Settings
     settings() {
       let response = {
         logo: this.$store.state.qsiteApp.logo
-      }
-
+      };
       //response
-      return response
-    },
+      return response;
+    }
   }
-}
+};
 </script>
 
 <style lang="scss">
