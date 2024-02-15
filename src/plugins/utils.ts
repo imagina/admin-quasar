@@ -13,6 +13,7 @@ import moment from 'moment'
 import {uid} from 'quasar'
 import {openURL} from 'quasar'
 import i18n from './i18n'
+import globalStore from './globalStore'
 
 export default {
   alert,
@@ -30,6 +31,7 @@ export default {
   uid,
   openURL,
   i18n,
+  globalStore,
 }
 
 export {
@@ -48,4 +50,5 @@ export {
   uid,
   openURL,
   i18n,
+  globalStore,
 }
