@@ -1713,6 +1713,13 @@
   dependencies:
     "@lezer/common" "^1.0.0"
 
+"@mayasabha/ckeditor4-vue3@^1.0.8":
+  version "1.0.8"
+  resolved "https://registry.yarnpkg.com/@mayasabha/ckeditor4-vue3/-/ckeditor4-vue3-1.0.8.tgz#41916db142827631c46d972e4d7cf7f93afe85a3"
+  integrity sha512-4JVyaDujCWhlF07blbIZhOzEmINRga82QCC86VcRkMni9MI9+CTurKf5oPr5ID1Rx6o2r8YUZdFBO/wbRAm6Eg==
+  dependencies:
+    ckeditor4-integrations-common "^1.0.0"
+
 "@nodelib/fs.scandir@2.1.5":
   version "2.1.5"
   resolved "https://registry.yarnpkg.com/@nodelib/fs.scandir/-/fs.scandir-2.1.5.tgz#7619c2eb21b25483f6d167548b4cfd5a7488c3d5"
@@ -3209,13 +3216,6 @@ ckeditor4-integrations-common@^1.0.0:
   version "1.0.0"
   resolved "https://registry.yarnpkg.com/ckeditor4-integrations-common/-/ckeditor4-integrations-common-1.0.0.tgz#a8afc33b94877b4d01362c7c73aa9eec162b2d20"
   integrity sha512-OAoQT/gYrHkg0qgzf6MS/rndYhq3SScLVQ3rtXQeuCE8ju7nFHg3qZ7WGA2XpFxcZzsMP6hhugXqdel5vbcC3g==
-
-ckeditor4-vue@^3.1.0:
-  version "3.1.0"
-  resolved "https://registry.yarnpkg.com/ckeditor4-vue/-/ckeditor4-vue-3.1.0.tgz#19bdb89e476cbecae499b13d7f5b01206eb0df21"
-  integrity sha512-5kJluIO9Nq9qRYJ5HbFiqU1h1gtlwMBJPkBYl7nhf1hU0V9GXOR5b7Yze8z5+mcbo/KHgZ68AFzXy6GxKKnebQ==
-  dependencies:
-    ckeditor4-integrations-common "^1.0.0"
 
 clean-css@^4.2.1:
   version "4.2.4"
