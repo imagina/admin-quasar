@@ -2,7 +2,9 @@ import moment from 'moment';
 import { ref, computed } from 'vue';
 
 class Translator {
-  constructor(i18n) {
+  i18n: any;
+
+  constructor(i18n: any) {
     this.i18n = i18n;
     this.trc = this.trc.bind(this);
     this.trn = this.trn.bind(this);
@@ -41,7 +43,15 @@ class Translator {
   }
 }
 
-const stateTrans = ref(null);
+const stateTrans = ref<any>({
+  i18n: null,
+  trc: (num, lang) => '',
+  trn: (num, type) => '',
+  tr: (key, params = {}) => '',
+  trp: (key, params = {}) => '',
+  trd: (date, params = { type: 'short', fromUTC: false }) => '',
+  trdT: (date, format = 'MMMM, DD, YYYY HH:mm') => ''
+});
 const data = computed(() => ({
   get trans() {
     return stateTrans.value;
