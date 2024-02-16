@@ -51,6 +51,7 @@
 </template>
 
 <script>
+import metaDataMixin from './metaDataMixin'
 //Components Admin
 import headerAdminTheme1 from 'modules/qsite/_components/admin/theme1/header';
 import headerAdminTheme2 from 'modules/qsite/_components/admin/theme2/header';
@@ -69,21 +70,7 @@ import Alert from 'modules/qoffline/_components/alert.vue'
 
 export default {
   name: 'MasterLayout',
-  meta() {
-    let routeTitle = ((this.$route.meta && this.$route.meta.title) ? this.$route.meta.title : '');
-    if (this.$route.meta && this.$route.meta.headerTitle) routeTitle = this.$route.meta.headerTitle;
-    let siteName = this.$store.getters['qsiteApp/getSettingValueByName']('core::site-name');
-    let siteDescription = this.$store.getters['qsiteApp/getSettingValueByName']('core::site-description');
-    let iconHref = this.$store.getters['qsiteApp/getSettingMediaByName']('isite::favicon').path;
-
-    return {
-      title: `${this.useLegacyStructure ? this.$tr(routeTitle) : routeTitle} | ${siteName}`,
-      meta: {
-        description: { name: 'description', content: siteDescription || siteName }
-      },
-      link: [{ rel: 'icon', href: iconHref, id: 'icon' }]
-    };
-  },
+  mixins: [metaDataMixin],
   components: {
     cropperComponent,
     activitiesActions,
