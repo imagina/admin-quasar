@@ -30,7 +30,8 @@ export default boot(async ({ app, store }) => {
     numberFormats,
     datetimeFormats,
     silentTranslationWarn: true,
-    messages
+    messages,
+    warnHtmlInMessage: "off"
   });
   pluginI18n.trans = i18n;
   const {
