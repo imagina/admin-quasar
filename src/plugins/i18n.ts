@@ -1,64 +1,60 @@
 import moment from 'moment';
-import { ref, computed } from 'vue';
 
-class Translator {
-  i18n: any;
+//Instance the internalization
+let internalization = null;
 
-  constructor(i18n: any) {
-    this.i18n = i18n;
-    this.trc = this.trc.bind(this);
-    this.trn = this.trn.bind(this);
-    this.tr = this.tr.bind(this);
-    this.trp = this.trp.bind(this);
-    this.trd = this.trd.bind(this);
-    this.trdT = this.trdT.bind(this);
-  }
+//Instance helper methods
+const methods = {
+  setI18n (value)
+  {
+    internalization = value;
+  },
+  trc (num, lang)
+  {
+    return internalization.global.n(num, 'currency', lang);
+  },
 
-  trc(num, lang) {
-    return this.i18n.global.n(num, 'currency', lang);
-  }
-
-  trn(num, type) {
+  trn (num, type)
+  {
     if (type === 'percent') num /= 100;
-    return type ? this.i18n.global.n(num, type) : this.i18n.n(num);
-  }
+    return type ? internalization.global.n(num, type) : internalization.n(num);
+  },
 
-  tr(key, params = {}) {
-    return this.i18n.global.tc(key, 1, params);
-  }
+  tr (key, params = {})
+  {
+    return internalization.global.tc(key, 1, params);
+  },
 
-  trp(key, params = {}) {
-    return this.i18n.global.tc(key, 2, params);
-  }
+  trp (key, params = {})
+  {
+    return internalization.global.tc(key, 2, params);
+  },
 
-  trd(date, params = { type: 'short', fromUTC: false }) {
-    if (params.fromUTC) {
+  trd (date, params = { type: 'short', fromUTC: false })
+  {
+    if (params.fromUTC)
+    {
       date = moment(date).local().format('YYYY-MM-DD HH:mm:ss');
     }
-    return this.i18n.global.d(moment(date, 'YYYY-MM-DD HH:mm:ss').toDate(), params.type);
-  }
-
-  trdT(date, format = 'MMMM, DD, YYYY HH:mm') {
+    return internalization.global.d(moment(date, 'YYYY-MM-DD HH:mm:ss').toDate(), params.type);
+  },
+  trdT (date, format = 'MMMM, DD, YYYY HH:mm')
+  {
     return moment(date).format(format);
   }
-}
+};
 
-const stateTrans = ref<any>({
-  i18n: null,
-  trc: (num, lang) => '',
-  trn: (num, type) => '',
-  tr: (key, params = {}) => '',
-  trp: (key, params = {}) => '',
-  trd: (date, params = { type: 'short', fromUTC: false }) => '',
-  trdT: (date, format = 'MMMM, DD, YYYY HH:mm') => ''
-});
-const data = computed(() => ({
-  get trans() {
-    return stateTrans.value;
-  },
-  set trans(value) {
-    stateTrans.value = new Translator(value);
+/**
+ * Instance proxy, this proxy validate if i18n is initialiced, else
+ * return a empty string to prevent errors
+ */
+const I18nProxy = new Proxy(methods, {
+  get: function(target, prop)
+  {
+    if (prop != 'setI18n' && !internalization) return '';
+    return target[prop];
   }
-})).value;
-export default data;
+});
+
+export default I18nProxy;
 

@@ -32,37 +32,20 @@ export default boot(async ({ app, store }) => {
     silentTranslationWarn: true,
     messages
   });
-  pluginI18n.trans = i18n;
-  const {
-    trc,
-    trn,
-    tr,
-    trp,
-    trd,
-    trdT
-  } = pluginI18n.trans;
+  //=== Set the i18n instance to global node
+  pluginI18n.setI18n(i18n);
 
-//===== Change language to quasar components
+  //===== Change language to quasar components
   await store.dispatch('qsiteApp/SET_LOCALE', {
     locale: defaultLanguage,
     ssrContext: false,
     vue: app
   });
-  //===== Customs short-keys to locales
-  app.config.globalProperties.$trc = trc;
-  //number translate
-  app.config.globalProperties.$trn = trn;
-  //Singular translate
-  app.config.globalProperties.$tr = tr;
-  //Plural translate
-  app.config.globalProperties.$trp = trp;
-  //Date translate
-  app.config.globalProperties.$trd = trd;
-  //Date translate
-  app.config.globalProperties.$trdT = trdT;
 
-  //Currency translate
-
+  //Set as global the i18n helper methods
+  Object.keys(pluginI18n).forEach(methodName => {
+    app.config.globalProperties[`$${methodName}`] = pluginI18n[methodName];
+  });
 
   //Set i18n
   app.use(i18n);
