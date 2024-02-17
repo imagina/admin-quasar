@@ -7,7 +7,7 @@ import {
   useStore as vuexUseStore,
 } from 'vuex'
 import dynamicStores from '../setup/stores'
-import globalStore from 'src/plugins/globalStore'
+import pluginStore from 'src/plugins/store'
 
 // import example from './module-example'
 // import { ExampleStateInterface } from './module-example/state';
@@ -55,7 +55,7 @@ export default store(function (/* { ssrContext } */) {
     strict: !!process.env.DEBUGGING
   })
 
-  globalStore.setStore(Store)
+  pluginStore.setStore(Store)
 
   return Store;
 })
