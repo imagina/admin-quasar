@@ -66,7 +66,7 @@ export default {
       //Validate Permissions
       let quickCardsToShow = [];
       for (const card of quickCards) {
-        if (!card.permission || this.$auth.hasAccess(card.permission)) {
+        if (!card.permission || this.$hasAccess(card.permission)) {
           let qcComponent = card?.component
           if(typeof qcComponent == 'function') qcComponent = await qcComponent();
           card.component = markRaw(qcComponent.default || qcComponent);

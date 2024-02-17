@@ -119,7 +119,7 @@ export default {
     //Get them id
     iadminTheme() {
       //Get theme Id
-      return this.$store.getters['qsiteApp/getSettingValueByName']('isite::iadminTheme') || 1;
+      return this.$getSetting('isite::iadminTheme') || 1;
     },
     //instance components by mode and thems
     components() {
@@ -148,7 +148,7 @@ export default {
       }
     },
     useLegacyStructure() {
-      const legacyStructure = parseInt(this.$store.getters['qsiteApp/getSettingValueByName']('isite::legacyStructureCMS') || 0);
+      const legacyStructure = parseInt(this.$getSetting('isite::legacyStructureCMS') || 0);
       return legacyStructure === 1 || false;
 
     },
@@ -180,7 +180,7 @@ export default {
       pages.forEach((page) => {
         if (!page) return;
         const isActive = page.options ? page.options.activated : page.activated;
-        if (page && isActive && this.$auth.hasAccess(page.permission)) {
+        if (page && isActive && this.$hasAccess(page.permission)) {
           response.push({
             label: this.useLegacyStructure ? this.$tr(page.title) : page.title,
             icon: this.useLegacyStructure ? page.icon : (page.options ? page.options.icon : page.icon),
@@ -220,7 +220,7 @@ export default {
     },
     /** idl Time */
     idlTime() {
-      const idlTime = parseInt(this.$store.getters['qsiteApp/getSettingValueByName']('iprofile::logoutIdlTime') || 0);
+      const idlTime = parseInt(this.$getSetting('iprofile::logoutIdlTime') || 0);
       if (idlTime) {
         var time;
 
