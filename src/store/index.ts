@@ -55,7 +55,7 @@ export default store(function (/* { ssrContext } */) {
     strict: !!process.env.DEBUGGING
   })
 
-  globalStore.store = Store
+  globalStore.setStore(Store)
 
   return Store;
 })
