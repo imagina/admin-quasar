@@ -1,36 +1,32 @@
-import { ref, computed } from 'vue';
+let store = null
 
-class GlobalStore {
-  store: any
-
-  constructor(store: any) {
-    this.store = store;
-    this.hasAccess = this.hasAccess.bind(this);
-    this.hasSetting = this.hasSetting.bind(this);
-  }
-
-  hasAccess(can: string, params: any) {
-    return this.store.getters['quserAuth/hasAccess'](can, params)
-  }
-
+const methods = {
+  setStore (value)
+  {
+    store = value;
+  },
+  get store() {
+    return store
+  },
+  hasAccess(can: string, params?: any) {
+    return store.getters['quserAuth/hasAccess'](can, params)
+  },
   hasSetting(name: string) {
-    return this.store.getters['quserAuth/hasSetting'](name)
+    return store.getters['quserAuth/hasSetting'](name)
   }
 
 }
 
-const stateStore = ref<any>({
-  store: null,
-  hasAccess: (can, params) => false,
-  hasSetting: (name) => false,
-});
-const data = computed(() => ({
-  get store() {
-    return stateStore.value;
-  },
-  set store(value) {
-    stateStore.value = new GlobalStore(value);
+/**
+ * Instance proxy, this proxy validate if store is initialiced, else
+ * return a empty string to prevent errors
+ */
+const storeProxy = new Proxy(methods, {
+  get: function(target, prop)
+  {
+    if (prop != 'setStore' && !store) return '';
+    return target[prop];
   }
-})).value;
-export default data;
+});
+export default storeProxy;
 
