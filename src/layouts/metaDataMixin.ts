@@ -11,8 +11,8 @@ function generateMetaData ()
 {
   let routeTitle = ((this.$route.meta && this.$route.meta.title) ? this.$route.meta.title : '');
   if (this.$route.meta && this.$route.meta.headerTitle) routeTitle = this.$route.meta.headerTitle;
-  const siteName = this.$store.getters['qsiteApp/getSettingValueByName']('core::site-name');
-  const siteDescription = this.$store.getters['qsiteApp/getSettingValueByName']('core::site-description');
+  const siteName = this.$getSetting('core::site-name');
+  const siteDescription = this.$getSetting('core::site-description');
   const iconHref = this.$store.getters['qsiteApp/getSettingMediaByName']('isite::favicon').path;
 
   return {
