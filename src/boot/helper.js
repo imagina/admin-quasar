@@ -6,8 +6,6 @@ import apiResponse from 'modules/qcrud/_plugins/apiResponse'
 import utils from 'src/plugins/utils.ts'
 
 export default function ({app, router, store, Vue, ssrContext}) {
-  const { hasAccess, hasSetting} = utils.globalStore
-
   app.config.globalProperties.$alert = utils.alert
   app.config.globalProperties.$array = utils.array
   app.config.globalProperties.$date = utils.date
@@ -31,8 +29,8 @@ export default function ({app, router, store, Vue, ssrContext}) {
   app.config.globalProperties.$eventBus = utils.eventBus
   app.config.globalProperties.$filter = utils.filter
   app.config.globalProperties.$auth = {
-    hasAccess: hasAccess,
-    hasSetting: hasSetting,
+    hasAccess: utils.store.hasAccess,
+    hasSetting: utils.store.hasSetting,
   }
   app.config.globalProperties.$uid = utils.uid
   app.config.globalProperties.$apiResponse = apiResponse
