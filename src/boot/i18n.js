@@ -30,7 +30,8 @@ export default boot(async ({ app, store }) => {
     numberFormats,
     datetimeFormats,
     silentTranslationWarn: true,
-    messages
+    messages,
+    warnHtmlInMessage: "off"
   });
   //=== Set the i18n instance to global node
   pluginI18n.setI18n(i18n);
