@@ -28,13 +28,14 @@ export default function ({app, router, store, Vue, ssrContext}) {
   app.config.globalProperties.$openUrl = utils.openURL
   app.config.globalProperties.$eventBus = utils.eventBus
   app.config.globalProperties.$filter = utils.filter
-  app.config.globalProperties.$auth = {
-    hasAccess: utils.store.hasAccess,
-    hasSetting: utils.store.hasSetting,
-  }
   app.config.globalProperties.$uid = utils.uid
   app.config.globalProperties.$apiResponse = apiResponse
   app.config.globalProperties.$moment = utils.moment
+
+  //Set as global the store helper methods
+  Object.keys(utils.store).forEach(methodName => {
+    app.config.globalProperties[`$${methodName}`] = utils.store[methodName];
+  });
   //[ptc] app.use(moment)
   // app.use(moment)
   app.use(VueSignaturePad)

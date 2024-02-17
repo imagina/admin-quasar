@@ -20,7 +20,7 @@ export default {
   mixins: [metaDataMixin],
   computed: {
     useLegacyStructure() {
-      const legacyStructure = parseInt(this.$store.getters['qsiteApp/getSettingValueByName']('isite::legacyStructureCMS') || 0);
+      const legacyStructure = parseInt(this.$getSetting('isite::legacyStructureCMS') || 0);
       return legacyStructure === 1 || false;
     }
   }
