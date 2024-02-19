@@ -14,7 +14,7 @@
         <div id="subContent" class="row justify-between items-center">
           <div class="row items-center">
             <!-- Back Button -->
-            <q-btn icon="fas fa-arrow-left" unelevated round color="primary" class="btn-small q-mr-md"
+            <q-btn icon="fas fa-arrow-left" unelevated round color="primary" dense class="btn-small q-mr-md"
                    @click="$helper.backHistory()">
               <q-tooltip>{{ $tr('isite.cms.label.back') }}</q-tooltip>
             </q-btn>
