@@ -8,6 +8,7 @@ import {
 import { StateInterface } from '../store';
 //import routes from './routes';
 import configRoutes from '../setup/localRoutes'
+import pluginRouter from 'src/plugins/router'
 
 /*
  * If not building with SSR mode, you can
@@ -36,6 +37,8 @@ export default route<StateInterface>(function (/* { store, ssrContext } */) {
       process.env.VUE_ROUTER_BASE
     ),
   });
+
+  pluginRouter.setRouter(Router)
 
   return Router;
 });
