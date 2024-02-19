@@ -38,7 +38,7 @@ export default route<StateInterface>(function (/* { store, ssrContext } */) {
     ),
   });
 
-  pluginRouter.setRotuer(Router)
+  pluginRouter.setRouter(Router)
 
   return Router;
 });

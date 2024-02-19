@@ -1,7 +1,7 @@
 let router = null
 
 const methods = {
-  setRotuer (value: any)
+  setRouter (value: any)
   {
     router = value;
   },
@@ -19,7 +19,7 @@ const methods = {
  */
 const routerProxy = new Proxy(methods, {
   get: (target, prop: string) => {
-    if ((prop != 'setRotuer') && !router) return {};
+    if ((prop != 'setRouter') && !router) return {};
     if (Object.keys(target).includes(prop)) return target[prop];
     return router[prop];
   }
