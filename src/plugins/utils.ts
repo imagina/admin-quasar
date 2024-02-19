@@ -14,6 +14,17 @@ import { uid } from 'quasar';
 import { openURL } from 'quasar';
 import i18n from './i18n';
 import store from './store';
+import router from './router'
+
+const clone = <T>(dataToClone: T): T => {
+  return lodash.cloneDeepWith(dataToClone, (value: any) => {
+    //Not clone File or Blob  type
+    // @ts-ignore
+    if (value instanceof File || value instanceof Blob) {
+      return value
+    }
+  })
+}
 
 export default {
   alert,
@@ -31,7 +42,9 @@ export default {
   uid,
   openURL,
   i18n,
-  store
+  store,
+  router,
+  clone
 };
 
 export {
@@ -50,5 +63,7 @@ export {
   uid,
   openURL,
   i18n,
-  store
+  store,
+  router,
+  clone
 };

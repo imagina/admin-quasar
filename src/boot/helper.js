@@ -16,14 +16,7 @@ export default function ({app, router, store, Vue, ssrContext}) {
   app.config.globalProperties.$tour = tour
   app.config.globalProperties.$hook = new utils.hook(store)
   app.config.globalProperties.$notification = new notificationPlugin(store)
-  app.config.globalProperties.$clone = (dataToClone) => {
-    return utils.lodash.cloneDeepWith(dataToClone, value => {
-      //Not clone File or Blob  type
-      if (value instanceof File || value instanceof Blob) {
-        return value
-      }
-    })
-  }
+  app.config.globalProperties.$clone = utils.clone
   app.config.globalProperties.$crud = crud
   app.config.globalProperties.$openUrl = utils.openURL
   app.config.globalProperties.$eventBus = utils.eventBus
