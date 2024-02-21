@@ -106,3 +106,6 @@
 [submodule "src/modules/qslider"]
 	path = src/modules/qslider
 	url = https://github.com/imagina/qslider.git
+[submodule "src/modules/qreports"]
+	path = src/modules/qreports
+	url = https://github.com/imagina/qreports.git
