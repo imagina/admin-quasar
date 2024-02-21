@@ -1,4 +1,4 @@
-import { alert } from 'src/plugins/utils'
+import { alert, i18n } from 'src/plugins/utils'
 
 class Helper {
   constructor() {
@@ -397,18 +397,18 @@ class Helper {
       navigator.clipboard.writeText(text).then(function () {
         alert.info({
           icon: 'fas fa-copy',
-          message: message+"(pt)"//[ptc]
+          message: i18n.tr(message)
         });
       }, function (err) {
         alert.error({
           icon: 'fas fa-copy',
-          message: 'isite.cms.messages.failedCopyToClipboard(PT)'//[ptc]
+          message: i18n.tr('isite.cms.messages.failedCopyToClipboard')
         });
       });
     } catch (error) {
       alert.error({
         icon: 'fas fa-copy',
-        message: 'isite.cms.messages.failedCopyToClipboard(PT)'//[ptc]
+        message: i18n.tr('isite.cms.messages.failedCopyToClipboard')
       });
     }
   }
@@ -604,8 +604,7 @@ class Helper {
       }
       return {};
     } catch (error) {
-      //[ptc]
-      //Vue.prototype.$alert.error('The filter url is misspelled');
+      alert.error('The filter url is misspelled');
       console.log(error);
     }
   }
@@ -646,18 +645,18 @@ class Helper {
       navigator.clipboard.write([image]).then(function () {
         alert.info({
           icon: 'fas fa-copy',
-          message: message+"(pt)"//[ptc]
+          message: i18n.tr(message)
         });
       }, function (err) {
         alert.error({
           icon: 'fas fa-copy',
-          message: 'isite.cms.messages.failedCopyToClipboard(PT)'//[ptc]
+          message: i18n.tr('isite.cms.messages.failedCopyToClipboard')
         });
       });
     } catch (error) {
       alert.error({
         icon: 'fas fa-copy',
-        message: 'isite.cms.messages.failedCopyToClipboard(PT)'//[ptc]
+        message: i18n.tr('isite.cms.messages.failedCopyToClipboard')
       });
     }
   }
