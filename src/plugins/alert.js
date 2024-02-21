@@ -128,7 +128,9 @@ class Alert {
   showModal(params) {
     Dialog.create({
       component: alertModal,
-      params: params
+      componentProps: {
+        params: params
+      }
     })
   }
 }
