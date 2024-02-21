@@ -77,6 +77,13 @@ module.exports = configure(function(ctx) {
             config: [path.resolve(__dirname, './src/setup/plugin'), 'default']
           })
         )
+      },
+      vueCompiler: true,
+      vueLoaderOptions: {
+        // Options for vue-template-compiler
+        compilerOptions: {
+          isCustomElement: tag => tag.startsWith('vue-advanced-chat')
+        }
       }
       // transpile: false,
       // publicPath: '/',
