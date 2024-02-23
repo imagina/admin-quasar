@@ -155,7 +155,6 @@ class localCache {
 
   //Restore cache, save any data
   restore(keys = []) {
-    console.warn("Restore cache");
     return new Promise((resolve, reject) => {
       if (!process.env.CLIENT) return resolve(undefined) //Validate if is side Server
 
