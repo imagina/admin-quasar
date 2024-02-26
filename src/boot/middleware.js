@@ -1,5 +1,5 @@
-import { helper, cache, eventBus } from 'src/plugins/utils'
-import appConfig from 'src/setup/app'
+import { helper, cache, eventBus } from 'src/plugins/utils';
+import appConfig from 'src/setup/app';
 
 class Middleware {
   constructor(router, store) {
@@ -89,11 +89,11 @@ class Middleware {
   //Emit back event
   emitBackAction() {
     //Watch if event was catch
-    eventBus.on('back.handler.catch', () => this.allowNavigate = false)
+    eventBus.on('back.handler.catch', () => this.allowNavigate = false);
     //Dispatch event
-    eventBus.emit('back.handler')
+    eventBus.emit('back.handler');
     //Close Event
-    eventBus.off('back.handler.catch')
+    eventBus.off('back.handler.catch');
   }
 
   //Validate if route require authentication
@@ -149,7 +149,10 @@ class Middleware {
           //If is authenticated, redirect page from login to home
           if (!this.redirectTo && (to.name == 'auth.login')) this.redirectTo = { name: 'app.home' };
         } else {//If user not is authenticate
-          if (!['auth.login', 'auth.register'].includes(to.name)) this.redirectTo = {name: 'auth.login', query: {fromVueRoute: to.name}}
+          if (!['auth.login', 'auth.register'].includes(to.name)) this.redirectTo = {
+            name: 'auth.login',
+            query: { fromVueRoute: to.name }
+          };
         }
       }
       //Response

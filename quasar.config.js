@@ -12,7 +12,7 @@
 /* eslint-disable @typescript-eslint/no-var-requires */
 const { configure } = require('quasar/wrappers');
 const path = require('node:path');
-const webpack = require('webpack')
+const webpack = require('webpack');
 
 module.exports = configure(function(ctx) {
   return {
@@ -76,7 +76,7 @@ module.exports = configure(function(ctx) {
           new webpack.ProvidePlugin({
             config: [path.resolve(__dirname, './src/setup/plugin'), 'default']
           })
-        )
+        );
       },
       vueCompiler: true,
       vueLoaderOptions: {
@@ -177,16 +177,17 @@ module.exports = configure(function(ctx) {
 
     // https://v2.quasar.dev/quasar-cli-webpack/developing-pwa/configuring-pwa
     pwa: {
-      workboxPluginMode: 'GenerateSW', // 'GenerateSW' or 'InjectManifest'
-      workboxOptions: {}, // only for GenerateSW
+      workboxPluginMode: 'InjectManifest', // 'GenerateSW' or 'InjectManifest'
+      workboxOptions: {
+      }, // only for GenerateSW
 
       // for the custom service worker ONLY (/src-pwa/custom-service-worker.[js|ts])
       // if using workbox in InjectManifest mode
       // chainWebpackCustomSW (/* chain */) {},
 
       manifest: {
-        name: 'Quasar App',
-        short_name: 'Quasar App',
+        name: 'My APP',
+        short_name: 'My APP',
         description: '',
         display: 'standalone',
         orientation: 'portrait',
