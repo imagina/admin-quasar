@@ -9,6 +9,7 @@
     <!-- ROUTER VIEW -->
     <q-page-container>
       <!--Page route-->
+      <offlineAlert v-if="isAppOffline" />
       <div id="routeInformationContent" v-if="appConfig.mode == 'iadmin'"
            :class="`q-hide q-md-show ${iadminTheme == 1 ? 'bg-primary' : 'bg-white'}`">
         <div id="subContent" class="row justify-between items-center">
@@ -67,6 +68,7 @@ import footerPanel from 'modules/qsite/_components/panel/footer';
 import cropperComponent from 'modules/qsite/_components/master/cropper';
 import activitiesActions from 'modules/qgamification/_components/activitiesActions/index.vue';
 import Alert from 'modules/qoffline/_components/alert.vue'
+import offlineAlert from 'modules/qsite/_components/master/offlineAlert.vue'
 
 export default {
   name: 'MasterLayout',
@@ -86,7 +88,8 @@ export default {
     drawersPanel,
     footerPanel,
     //Offline
-    Alert
+    Alert,
+    offlineAlert
   },
   watch: {
     shouldChangePassword(data) {
@@ -113,6 +116,9 @@ export default {
     };
   },
   computed: {
+    isAppOffline() {
+      return this.$store.state.qofflineMaster.isAppOffline;
+    },
     appState() {
       return this.$store.state.qsiteApp;
     },
