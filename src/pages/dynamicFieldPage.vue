@@ -53,8 +53,7 @@ export default {
           props: {
             crudType: 'select',
             imageField: 'mediaFiles.mainimage.url',
-            //[ptc]
-            //crudData: import('modules/qblog/_crud/categories'),
+            crudData: import('modules/qblog/_crud/categories'),
             customData: {
               read: {
                 requestParams: {include: 'parent', filter: {status: 1}}
