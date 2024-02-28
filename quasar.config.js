@@ -35,6 +35,7 @@ module.exports = configure(function(ctx) {
     boot: [
       'axios',
       'server-side',
+      'manifest',
       'middleware',
       'helper',
       'i18n',
@@ -110,7 +111,7 @@ module.exports = configure(function(ctx) {
     // Full list of options: https://v2.quasar.dev/quasar-cli-webpack/quasar-config-js#Property%3A-devServer
     devServer: {
       server: {
-        type: 'http'
+        type: 'https'
       },
       port: 8080,
       open: true // opens browser window automatically
@@ -178,8 +179,7 @@ module.exports = configure(function(ctx) {
     // https://v2.quasar.dev/quasar-cli-webpack/developing-pwa/configuring-pwa
     pwa: {
       workboxPluginMode: 'InjectManifest', // 'GenerateSW' or 'InjectManifest'
-      workboxOptions: {
-      }, // only for GenerateSW
+      workboxOptions: {}, // only for GenerateSW
 
       // for the custom service worker ONLY (/src-pwa/custom-service-worker.[js|ts])
       // if using workbox in InjectManifest mode

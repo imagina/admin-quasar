@@ -16,6 +16,10 @@ const methods = {
   getSetting (name: string)
   {
     return store.getters['qsiteApp/getSettingValueByName'](name);
+  },
+  getMediaSetting (name: string)
+  {
+    return store.getters['qsiteApp/getSettingMediaByName'](name);
   }
 };
 

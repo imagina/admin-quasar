@@ -1,11 +1,4 @@
-/**
- * Generate the metadata for layouts, this needs to be called only from a vue file
- * Docs: https://quasar.dev/quasar-plugins/meta#options-api
- * "this" here refers to vue component
- */
-
 import { createMetaMixin } from 'quasar';
-
 
 function generateMetaData ()
 {
@@ -13,7 +6,8 @@ function generateMetaData ()
   if (this.$route.meta && this.$route.meta.headerTitle) routeTitle = this.$route.meta.headerTitle;
   const siteName = this.$getSetting('core::site-name');
   const siteDescription = this.$getSetting('core::site-description');
-  const iconHref = this.$store.getters['qsiteApp/getSettingMediaByName']('isite::favicon').path;
+  const iconHref = this.$store.getters['qsiteApp/getSettingMediaByName']('isite::favicon');
+  const favicon = iconHref.id ? iconHref.path : require('/public/favicon.ico');
 
   return {
     title: `${this.useLegacyStructure ? this.$tr(routeTitle) : routeTitle} | ${siteName}`,
@@ -21,7 +15,7 @@ function generateMetaData ()
       description: { name: 'description', content: siteDescription || siteName }
     },
     link: {
-      icon: { rel: 'icon', href: iconHref }
+      icon: { rel: 'icon', href: favicon }
     }
   };
 }
