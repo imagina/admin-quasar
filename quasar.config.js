@@ -186,8 +186,8 @@ module.exports = configure(function(ctx) {
       // chainWebpackCustomSW (/* chain */) {},
 
       manifest: {
-        name: 'My APP',
-        short_name: 'My APP',
+        name: 'AGIONE APP',
+        short_name: 'AGIONE APP',
         description: '',
         display: 'standalone',
         orientation: 'portrait',
