@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { alert } from 'src/plugins/utils';
+import { alert, cache } from 'src/plugins/utils';
 import { Loading } from 'quasar';
 import qs from 'qs';
 
