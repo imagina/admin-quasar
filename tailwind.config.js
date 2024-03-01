@@ -1,21 +1,26 @@
 /** @type {import('tailwindcss').Config} */
-import colors from 'tailwindcss/colors'
+import colors from 'tailwindcss/colors';
+
+const dynamicClasses = [];
+
+Object.keys(colors).forEach((colorKey) => {
+  if (typeof colors[colorKey] === 'object') {
+    Object.keys(colors[colorKey]).forEach((tone) => {
+      dynamicClasses.push(`tw-bg-${colorKey}-${tone}`);
+      dynamicClasses.push(`tw-text-${colorKey}-${tone}`);
+      dynamicClasses.push(`tw-border-${colorKey}-${tone}`);
+    });
+  } else {
+    dynamicClasses.push(`tw-bg-${colorKey}`);
+    dynamicClasses.push(`tw-text-${colorKey}`);
+    dynamicClasses.push(`tw-border-${colorKey}`);
+  }
+});
 
 module.exports = {
   prefix: 'tw-',
   content: ["./src/**/*.{html,js,ts,vue}"],
-  safelist: [
-    'tw-bg-blue-400',
-    'tw-bg-red-500',
-    'tw-bg-green-500',
-    'tw-bg-cyan-400',
-    'tw-text-cyan-400',
-    'tw-bg-yellow-400',
-    'tw-text-yellow-400',
-    'tw-bg-gray-400',
-    'tw-border-pink-400',
-    'tw-border-orange-400',
-  ],
+  safelist: [...dynamicClasses],
   theme: {
     extend: {
       colors: {
@@ -25,8 +30,9 @@ module.exports = {
         gray: colors.neutral,
         blue: colors.blue,
         red: colors.red,
+        slate: colors.slate,
       }
     },
   },
   plugins: [],
-}
+};
