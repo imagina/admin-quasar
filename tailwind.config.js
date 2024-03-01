@@ -1,5 +1,10 @@
 /** @type {import('tailwindcss').Config} */
 import colors from 'tailwindcss/colors';
+delete colors['lightBlue'];
+delete colors['warmGray'];
+delete colors['trueGray'];
+delete colors['coolGray'];
+delete colors['blueGray'];
 
 const dynamicClasses = [];
 
@@ -23,15 +28,7 @@ module.exports = {
   safelist: [...dynamicClasses],
   theme: {
     extend: {
-      colors: {
-        green: colors.emerald,
-        yellow: colors.amber,
-        purple: colors.violet,
-        gray: colors.neutral,
-        blue: colors.blue,
-        red: colors.red,
-        slate: colors.slate,
-      }
+      colors: {}
     },
   },
   plugins: [],
