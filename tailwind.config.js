@@ -8,17 +8,19 @@ delete colors['blueGray'];
 
 const dynamicClasses = [];
 
+const processColor = (color, tone = null) => {
+  dynamicClasses.push(`tw-bg-${color}${tone ? `-${tone}` : ''}`);
+  dynamicClasses.push(`tw-text-${color}${tone ? `-${tone}` : ''}`);
+  dynamicClasses.push(`tw-border-${color}${tone ? `-${tone}` : ''}`);
+};
+
 Object.keys(colors).forEach((colorKey) => {
   if (typeof colors[colorKey] === 'object') {
     Object.keys(colors[colorKey]).forEach((tone) => {
-      dynamicClasses.push(`tw-bg-${colorKey}-${tone}`);
-      dynamicClasses.push(`tw-text-${colorKey}-${tone}`);
-      dynamicClasses.push(`tw-border-${colorKey}-${tone}`);
+      processColor(colorKey, tone);
     });
   } else {
-    dynamicClasses.push(`tw-bg-${colorKey}`);
-    dynamicClasses.push(`tw-text-${colorKey}`);
-    dynamicClasses.push(`tw-border-${colorKey}`);
+    processColor(colorKey);
   }
 });
 
