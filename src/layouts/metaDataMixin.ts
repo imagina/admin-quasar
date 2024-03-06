@@ -10,7 +10,7 @@ function generateMetaData ()
   const favicon = iconHref.id ? iconHref.path : require('/public/favicon.ico');
 
   return {
-    title: `${this.useLegacyStructure ? this.$tr(routeTitle) : routeTitle} | ${siteName}`,
+    title: `${this.$tr(routeTitle)} | ${siteName}`,
     meta: {
       description: { name: 'description', content: siteDescription || siteName }
     },
