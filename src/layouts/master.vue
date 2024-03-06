@@ -155,11 +155,6 @@ export default {
         };
       }
     },
-    useLegacyStructure() {
-      const legacyStructure = parseInt(this.$getSetting('isite::legacyStructureCMS') || 0);
-      return legacyStructure === 1 || false;
-
-    },
     pagesConfig() {
       return this.$store.state.qsiteApp.pages;
     },
@@ -168,23 +163,12 @@ export default {
       let response = [];
       //Get breadcrumbs from params
       let breadcrumbs = (this.$route.meta?.subHeader?.breadcrumb || []).reverse();
-      //find Homepage
-      const page = this.pagesConfig.find(item => item.system_name.toLowerCase() === this.homePage);
       //Set Home page and current page
       const home  = _pages.mainapp.home
-      const pages = this.useLegacyStructure ? this.$route.name.indexOf('app.home') == -1 ? [home, this.$route.meta] : [home]
-        : this.$route.name.indexOf('app.home') == -1 ? [page, this.$route.meta] : [page];
+      const pages = this.$route.name.indexOf('app.home') == -1 ? [home, this.$route.meta] : [home]
       //Get page from breadcrum
-      console.warn(breadcrumbs)
       breadcrumbs.forEach((pageName) => {
-        if (this.useLegacyStructure) {
-          pages.splice(1, 0, _.get(_pages, pageName));
-        } else {
-          const base = this.pagesConfig.find(
-            (item) => item.system_name.toLowerCase() == pageName.toLowerCase()
-          );
-          pages.splice(1, 0, base);
-        }
+        pages.splice(1, 0, _.get(_pages, pageName));
       });
       //Format all routes to breadcrum
       pages.forEach((page) => {
@@ -192,9 +176,9 @@ export default {
         const isActive = page.options ? page.options.activated : page.activated;
         if (page && isActive && this.$hasAccess(page.permission)) {
           response.push({
-            label: this.useLegacyStructure ? this.$tr(page.title) : page.title,
-            icon: this.useLegacyStructure ? page.icon : (page.options ? page.options.icon : page.icon),
-            to: this.useLegacyStructure ? page.name : (page.options ? page.options.name : page.name)
+            label: this.$tr(page.title),
+            icon: page.icon,
+            to: page.name
           });
         }
       });
