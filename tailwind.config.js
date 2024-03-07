@@ -1,32 +1,37 @@
 /** @type {import('tailwindcss').Config} */
-import colors from 'tailwindcss/colors'
+import colors from 'tailwindcss/colors';
+delete colors['lightBlue'];
+delete colors['warmGray'];
+delete colors['trueGray'];
+delete colors['coolGray'];
+delete colors['blueGray'];
+
+const dynamicClasses = [];
+
+const processColor = (color, tone = null) => {
+  dynamicClasses.push(`tw-bg-${color}${tone ? `-${tone}` : ''}`);
+  dynamicClasses.push(`tw-text-${color}${tone ? `-${tone}` : ''}`);
+  dynamicClasses.push(`tw-border-${color}${tone ? `-${tone}` : ''}`);
+};
+
+Object.keys(colors).forEach((colorKey) => {
+  if (typeof colors[colorKey] === 'object') {
+    Object.keys(colors[colorKey]).forEach((tone) => {
+      processColor(colorKey, tone);
+    });
+  } else {
+    processColor(colorKey);
+  }
+});
 
 module.exports = {
   prefix: 'tw-',
   content: ["./src/**/*.{html,js,ts,vue}"],
-  safelist: [
-    'tw-bg-blue-400',
-    'tw-bg-red-500',
-    'tw-bg-green-500',
-    'tw-bg-cyan-400',
-    'tw-text-cyan-400',
-    'tw-bg-yellow-400',
-    'tw-text-yellow-400',
-    'tw-bg-gray-400',
-    'tw-border-pink-400',
-    'tw-border-orange-400',
-  ],
+  safelist: [...dynamicClasses],
   theme: {
     extend: {
-      colors: {
-        green: colors.emerald,
-        yellow: colors.amber,
-        purple: colors.violet,
-        gray: colors.neutral,
-        blue: colors.blue,
-        red: colors.red,
-      }
+      colors: {}
     },
   },
   plugins: [],
-}
+};

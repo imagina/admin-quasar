@@ -186,13 +186,13 @@ module.exports = configure(function(ctx) {
       // chainWebpackCustomSW (/* chain */) {},
 
       manifest: {
-        name: 'AGIONE APP',
-        short_name: 'AGIONE APP',
+        name: 'Imagina APP',
+        short_name: 'Imagina APP',
         description: '',
         display: 'standalone',
         orientation: 'portrait',
         background_color: '#ffffff',
-        theme_color: '#027be3',
+        theme_color: '#ffffff',
         icons: [
           {
             src: 'icons/icon-128x128.png',

@@ -18,11 +18,6 @@ export default {
     drawersBlank
   },
   mixins: [metaDataMixin],
-  computed: {
-    useLegacyStructure() {
-      const legacyStructure = parseInt(this.$getSetting('isite::legacyStructureCMS') || 0);
-      return legacyStructure === 1 || false;
-    }
-  }
+  computed: {}
 };
 </script>
