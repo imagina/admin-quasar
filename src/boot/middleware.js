@@ -141,8 +141,12 @@ class Middleware {
               return location.href = windowLastRoute;
               //validate last vue router history route to rediret
             } else if (fromVueRoute && !['auth.logout', 'auth.login', 'auth.register'].includes(fromVueRoute)) {
+              // Filter params
+              const redirectParams = Object.fromEntries(
+                Object.entries(from.query).filter(([key]) => key !== 'fromVueRoute')
+              );
               //Redirect last
-              this.redirectTo = { name: fromVueRoute };
+              this.redirectTo = { name: fromVueRoute, query: redirectParams };
             }
           }
 
@@ -151,7 +155,7 @@ class Middleware {
         } else {//If user not is authenticate
           if (!['auth.login', 'auth.register'].includes(to.name)) this.redirectTo = {
             name: 'auth.login',
-            query: { fromVueRoute: to.name }
+            query: { fromVueRoute: to.name, ...to.query }
           };
         }
       }

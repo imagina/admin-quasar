@@ -78,6 +78,8 @@ export default {
       'org-wizard-step'
     ]
   },
+  //Cache Time in Seconds
+  cacheTime: (3600 * 3),
   //Reset Store
   resetStores: [
     'quserAuth/RESET'
