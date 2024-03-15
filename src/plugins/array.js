@@ -23,7 +23,11 @@ class Array {
     let orderItems = (items) => {
       let responseOrder = []
       items.forEach(item => {
-        let itemData = {id: item[fields.id], label: item[fields.label], value: item[fields.id]}
+        let itemData = {
+          id: item[fields.id],
+          label: typeof fields.label == 'function' ? fields.label(item) : item[fields.label],
+          value: item[fields.id]
+        }
         if (item.children) itemData.children = orderItems(item.children)
         responseOrder.push({...item, ...itemData})
       })
@@ -34,7 +38,7 @@ class Array {
     trees.forEach((tree, index) => {
       this.builTree(elementsClone, tree, fields).forEach(element => {
         let itemOrder = {
-          label: element[fields.label],
+          label: typeof fields.label == 'function' ? fields.label(element) : element[fields.label],
           id: element[fields.id],
           value: element[fields.id]
         }
@@ -271,6 +275,10 @@ class Array {
   }
 
   hasCommonElement(arr1, arr2) {
+    // Map Arrays as string
+    arr1 = arr1.map(item => item.toString())
+    arr2 = arr2.map(item => item.toString())
+
     for (let i = 0; i < arr1.length; i++) {
       if (arr2.includes(arr1[i])) {
         return true;  // Found a common element
