@@ -17,7 +17,7 @@ const methods = {
   trn (num, type)
   {
     if (type === 'percent') num /= 100;
-    return type ? internalization.global.n(num, type) : internalization.n(num);
+    return type ? internalization.global.n(num, type) : internalization.global.n(num);
   },
 
   tr (key, params = {})
