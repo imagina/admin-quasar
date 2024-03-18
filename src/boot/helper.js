@@ -1,5 +1,4 @@
 import crud from 'modules/qcrud/_services/baseService'
-import VueSignaturePad from 'vue-signature-pad';
 import notificationPlugin from 'modules/qnotification/_plugins/notification'
 import {tour} from 'modules/qgamification/_plugins/tour'
 import apiResponse from 'modules/qcrud/_plugins/apiResponse'
@@ -29,7 +28,4 @@ export default function ({app, router, store, Vue, ssrContext}) {
   Object.keys(utils.store).forEach(methodName => {
     app.config.globalProperties[`$${methodName}`] = utils.store[methodName];
   });
-  //[ptc] app.use(moment)
-  // app.use(moment)
-  app.use(VueSignaturePad)
 }
