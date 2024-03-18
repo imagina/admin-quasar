@@ -10,6 +10,7 @@ import { store } from 'src/plugins/utils';
 export default boot(async (/* { app, router, ... } */) => {
   //Get the manifest link
   const manifestLink = document.querySelector('link[rel="manifest"]');
+  const siteName = store.getSetting('core::site-name')
 
   if (manifestLink) {
     const startUrl = `${window.location.origin}${window.location.pathname}`;
