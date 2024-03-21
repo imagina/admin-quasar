@@ -20,7 +20,6 @@ import crudComponent from 'modules/qcrud/_components/v2/crud';
 import kanban from 'modules/qsite/_components/master/kanban/index.vue';
 import folders from 'modules/qsite/_components/master/folders/index.vue';
 import promiseTemplate from 'modules/qsite/_components/master/promiseTemplate/index.vue';
-//[ptc]
 import activities from 'modules/qgamification/_components/categoryView/index.vue';
 import helpText from 'modules/qsite/_components/master/helpText.vue';
 
@@ -49,7 +48,6 @@ export default ({ app }) => {
     { name: 'kanban', component: kanban },
     { name: 'folders', component: folders },
     { name: 'promiseTemplate', component: promiseTemplate },
-    //[ptc]
     { name: 'activities', component: activities },
     { name: 'help-text', component: helpText }
   ];
